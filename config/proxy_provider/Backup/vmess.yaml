@@ -1,0 +1,33 @@
+proxies:
+  - name: vmess-biasa
+    server: server.com
+    port: 443
+    type: vmess
+    uuid: xxxx-xxxx-xxxx-xxxx-xxxx
+    alterId: 0
+    cipher: auto
+    tls: true
+    skip-cert-verify: true
+    servername: sni.bug
+    network: ws
+    ws-opts: 
+      path: /path-vmess
+      headers: 
+        Host: sni.bug
+    udp: true
+  - name: vmess-ws
+    server: sni.bug
+    port: 443
+    type: vmess
+    uuid: d1824020-8aca-11ed-b736-205c6d5f5d78
+    alterId: 0
+    cipher: auto
+    tls: true
+    skip-cert-verify: true
+    servername: server.com
+    network: ws
+    ws-opts: 
+      path: /path-vmess
+      headers: 
+        Host: server.com
+    udp: true

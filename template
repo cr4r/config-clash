@@ -1,0 +1,117 @@
+### Perhatikan ip 123.123.123 => itu adalah ip dari modem
+### Sesuaikan dengan gateway modem
+port: 7680
+socks-port: 7681
+redir-port: 7682
+mixed-port: 7683
+mode: rule
+allow-lan: true
+#unified-delay: false
+bind-address: '*'
+log-level: info
+ipv6: true
+geodata-mode: true
+external-controller: 0.0.0.0:9090
+external-ui: dashboard/dist
+tcp-concurrent: true
+# interface-name: ""
+enable-process: true
+geodata-loader: memconservative
+# routing-mark: 233
+inbound-tfo: false
+secret: ""
+# geox-url: {mmdb: "", geoip: "", geosite: ""}
+profile:
+  store-selected: true
+  store-fake-ip: true
+  tracing: true
+experimental:
+  sniff-tls-sni: true
+  ignore-resolve-fail: true
+sniffer:
+  enable: true
+  sniffing:
+    - tls
+    - http
+  force-domain:
+    - '+'
+#  skip-domain:
+#    - '+.google.com'
+  port-whitelist: 
+    - 443
+    - 80 
+  force-dns-mapping: true
+  parse-pure-ip: true
+hosts: 
+  "cacerts.digicert.com": "104.21.21.147"
+  "ota.googlezip.net": "127.0.0.1"
+  "ota-cache1.googlezip.net": "127.0.0.1"
+  "ota-cache2.googlezip.net": "127.0.0.1"
+tun:
+  enable: true
+  device: utun
+  stack: system
+#  mtu: 1500
+  dns-hijack:
+### dns hijact mengarah ke dns clash
+    - 192.18.0.2:53
+#    - any:53
+#    - 123.123.123.123:53
+  inet4-address: 198.18.0.1/30
+  inet6-address: [fdfe:dcba:9876::1/126]
+  auto-route: true
+  auto-detect-interface: true
+  strict-route: false
+dns:
+  enable: true
+  ipv6: true
+  listen: 0.0.0.0:1053
+  use-hosts: true
+  enhanced-mode: fake-ip
+  fake-ip-range: 192.18.0.1/16
+  fake-ip-filter: 
+    - "+.stun.*.*.*.*.*"
+    - "+.stun.*.*.*.*"
+    - "+.stun.*.*.*"
+    - "+.stun.*.*"
+    - stun.*.*.*
+    - stun.*.*
+    - proxy.golang.org
+    - "+.msftconnecttest.com"
+    - "*.home.arpa"
+    - "*.local"
+    - "*.test"
+    - "*.localhost"
+    - "*.invalid"
+    - "*.example"
+    - "*.localdomain"
+    - "*.lan"
+    - "localhost"
+    - 0.id.pool.ntp.org
+    - 1.id.pool.ntp.org
+    - 2.id.pool.ntp.org
+    - 3.id.pool.ntp.org
+  default-nameserver:
+    - 1.1.1.1
+    - 1.0.0.1
+    - '112.215.248.124#REJECT'     ## dns xl di reject
+  nameserver:
+    - https://cloudflare-dns.com/dns-query
+  fallback:
+### Agar tidak malak kuota
+    - 123.123.123.123
+  fallback-filter:
+    geoip: true
+    geoip-code: "ID"
+    geosite: [gfw]
+    ipcidr: 
+      - 0.0.0.0/32
+      - 127.0.0.0/8
+      - 123.123.123.0/24
+      - 192.168.1.0/24
+      - 1.1.1.1/32
+      - 1.0.0.1/32
+    domain: 
+      - "+.google.com"
+      - "+.facebook.com"
+      - "+.youtube.com"

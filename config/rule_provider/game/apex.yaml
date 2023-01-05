@@ -1,0 +1,11 @@
+payload:
+## Apex Legend Mobile
+  - DOMAIN-SUFFIX,mgapex.com
+  - IP-CIDR,18.169.173.32/32
+  - IP-CIDR,34.88.122.144/32
+  - IP-CIDR,13.213.220.0/24
+  - IP-CIDR,18.170.22.126/32
+  - DST-PORT,11001
+  - DST-PORT,5692
+  - DST-PORT,10101
+  - DST-PORT,10048

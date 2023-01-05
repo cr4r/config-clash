@@ -1,0 +1,24 @@
+proxies:
+- name: vless_grpc
+  type: vless
+  servers: server.com
+  port: 443
+  uuid: xxxx-xxxx-xxxx-xxxx
+  udp: true
+  skip-cert-verify: true
+  tls: true
+  servername: sni.bu
+  network: grpc
+  grpc-opts:
+    grpc-service-name: sni.bug
+- name: trojan_grpc
+  type: trojan
+  server: server.com
+  port: 443
+  password: xxxxxxxxx
+  udp: true
+  sni: sni.bug
+  skip-cert-verify: true
+  network: grpc
+  grpc-opts:
+    grpc-service-name: sni.bug

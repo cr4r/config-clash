@@ -1,0 +1,163 @@
+proxies:
+proxy-providers:
+  PP_Bebas:
+    type: file
+    path: "./config/proxy_provider/bebas.yaml"
+    health-check:
+      enable: true
+      url: http://www.gstatic.com/generate_204
+      interval: 50
+  PP_Indonesia:
+    type: file
+    path: "./config/proxy_provider/indonesia.yaml"
+    health-check:
+      enable: true
+      url: http://cp.cloudflare.com/generate_204
+      interval: 100
+proxy-groups:
+  - name: Best Ping
+    type: url-test
+    disable-udp: false
+    url: http://cp.cloudflare.com/generate_204
+    interval: 200
+    use:
+      - PP_Bebas
+  - name: Pilihan
+    type: select
+    disable-udp: false
+    url: http://cp.cloudflare.com/generate_204
+    interval: 200
+    use:
+      - PP_Bebas
+  - name: 🇮🇩Indonesia
+    type: url-test
+    url: http://cp.cloudflare.com/generate_204
+    interval: 200
+    disable-udp: false
+    use:
+      - PP_Indonesia
+  - name: 🌐Direct
+    type: select
+    proxies:
+      - DIRECT
+  - name: ⛔️Reject
+    type: select
+    proxies:
+      - REJECT
+  - name: 🌎Bebas
+    type: select
+    disable-udp: false
+    url: http://cp.cloudflare.com/generate_204
+    interval: 200
+    proxies:
+      - Best Ping
+      - Pilihan
+  - name: 🧳Mode Indonesia
+    type: select
+    url: http://cp.cloudflare.com/generate_204
+    interval: 200
+    disable-udp: false
+    proxies:
+      - 🇮🇩Indonesia
+      - 🌎Bebas
+      - 🌐Direct
+rule-providers:
+### classical / ipcidr / domain
+  RP_Direct:
+    type: file
+    behavior: classical
+    path: "./config/rule_provider/rule-direct.yaml"
+  RP_Reject:
+    type: file
+    behavior: classical
+    path: "./config/rule_provider/rule-reject.yaml"
+  RP_WhatsApp:
+    type: file
+    behavior: classical
+    path: "./config/rule_provider/rule-whatsapp.yaml"
+  RP_Line:
+    type: file
+    behavior: domain
+    path: "./config/rule_provider/rule-line.yaml"
+  RP_Lan_Domain:
+    type: file
+    behavior: domain
+    path: "./config/rule_provider/rule-lan-domain.yaml"
+  RP_Lan_IP:
+    type: file
+    behavior: ipcidr
+    path: "./config/rule_provider/rule-lan-ip.yaml"
+  RP_DNS:
+    type: file
+    behavior: classical
+    path: "./config/rule_provider/rule-dns.yaml"
+  RP_Video:
+    type: file
+    behavior: classical
+    path: "./config/rule_provider/KhususIndo/rule-video.yaml"
+  RP_Musik:
+    type: file
+    behavior: classical
+    path: "./config/rule_provider/KhususIndo/rule-musik.yaml"
+  RP_Domain_Indo:
+    type: file
+    behavior: classical
+    path: "./config/rule_provider/KhususIndo/rule-domain-indo.yaml"
+  RP_Akaimahd:
+    type: file
+    behavior: classical
+    path: "./config/rule_provider/KhususIndo/rule-akaimahd.yaml"
+  RP_Disney_Joox:
+    type: file
+    behavior: classical
+    path: "./config/rule_provider/KhususIndo/rule-disney-joox.yaml"
+  RP_Market_Place:
+    type: file
+    behavior: classical
+    path: "./config/rule_provider/KhususIndo/rule-market-place.yaml"
+  RP_Ewallet:
+    type: file
+    behavior: classical
+    path: "./config/rule_provider/KhususIndo/rule-ewallet.yaml"
+rules:
+  - DOMAIN,clash.razord.top,🌐Direct
+  - DOMAIN,yacd.haishan.me,🌐Direct
+  - IP-CIDR,192.18.0.1/16,⛔️Reject,no-resolve
+### Anti gagal Block Ads
+  - DOMAIN-SUFFIX,googlesyndication.com,🌎Bebas
+  - DOMAIN-SUFFIX,googleadservices.com,⛔️Reject
+  - GEOSITE,CATEGORY-ADS-ALL,⛔️Reject
+  - GEOSITE,win-spy,⛔️Reject
+  - GEOSITE,google-ads,⛔️Reject
+### Paket Akrab
+  - RULE-SET,RP_WhatsApp,🌐Direct
+  - GEOSITE,whatsapp,🌐Direct
+  - RULE-SET,RP_Line,🌐Direct
+  - PROCESS-NAME,com.whatsapp,🌐Direct
+  - PROCESS-NAME,com.whatsapp.w4b,🌐Direct
+  - PROCESS-NAME,com.yowhatsapp,🌐Direct
+  - PROCESS-NAME,com.fmwhatsapp,🌐Direct
+  - PROCESS-NAME,com.gbwhatsapp,🌐Direct
+### Fix lemot youtube
+  - AND,((GEOSITE, YOUTUBE),(NETWORK, UDP)),⛔️Reject
+### Domain Indo khusus VPN INDO
+  - AND,((DST-PORT,5228-5230),(NETWORK,TCP),(DOMAIN,mtalk.google.com)),🧳Mode Indonesia
+  - RULE-SET,RP_Video,🧳Mode Indonesia
+  - RULE-SET,RP_Musik,🧳Mode Indonesia
+  - RULE-SET,RP_Disney_Joox,🧳Mode Indonesia
+  - RULE-SET,RP_Akaimahd,🧳Mode Indonesia
+  - RULE-SET,RP_Market_Place,🧳Mode Indonesia
+  - RULE-SET,RP_Ewallet,🧳Mode Indonesia
+  - RULE-SET,RP_Domain_Indo,🧳Mode Indonesia
+### Umum
+  - RULE-SET,RP_DNS,🌎Bebas
+  - RULE-SET,RP_Direct,🌐Direct
+  - RULE-SET,RP_Lan_Domain,🌐Direct
+  - GEOIP,private,🌐Direct,no-resolve
+  - RULE-SET,RP_Lan_IP,🌐Direct,no-resolve
+### REJECT
+  - RULE-SET,RP_Reject,⛔️Reject
+### Yang tidak di rule otomatis kesini
+  - GEOIP,ID,🧳Mode Indonesia
+  - MATCH,🌎Bebas
+  - MATCH,GLOBAL

@@ -1,0 +1,9 @@
+payload:
+## Ragnarok M: Eternal Love
+  - DOMAIN,cloud-mobile-prod.appspot.com
+  - DOMAIN-SUFFIX,ro.com
+  - DOMAIN-SUFFIX,foldlife.net
+  - DOMAIN-SUFFIX,intl.xd.com
+  - DOMAIN-SUFFIX,xdcdn.net
+  - DOMAIN-SUFFIX,xdplt.com
+  - DST-PORT,5432

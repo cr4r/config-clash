@@ -1,0 +1,31 @@
+proxies:
+  - name: vless-biasa
+    server: server.com
+    port: 443
+    type: vless
+    uuid: xxxx-xxxx-xxxx-xxxx-xxxx
+    cipher: auto
+    tls: true
+    skip-cert-verify: true
+    servername: sni.bug
+    network: ws
+    ws-opts: 
+      path: /path-vless
+      headers: 
+        Host: sni.bug
+    udp: true
+  - name: vless-ws
+    server: sni.bug
+    port: 443
+    type: vless
+    uuid: xxxx-xxxx-xxxx-xxxx-xxxx
+    cipher: auto
+    tls: true
+    skip-cert-verify: true
+    servername: server.com
+    network: ws
+    ws-opts: 
+      path: /path-vless
+      headers: 
+        Host: server.com
+    udp: true

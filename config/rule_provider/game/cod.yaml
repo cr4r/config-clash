@@ -1,0 +1,27 @@
+payload:
+### Call of Duty Mobile
+  - DOMAIN-KEYWORD,codmsg
+  - DOMAIN,sg.tdatamaster.com
+  - DOMAIN,hsg.tdm.qq.com
+  - DOMAIN,sg.itopsdk.com
+  - DOMAIN,cdn.wetest.qq.com
+  - DOMAIN,itop.qq.com
+  - DOMAIN,dl.listdl.com
+  - DOMAIN,sg.voice.gcloudcs.com
+  - DOMAIN-SUFFIX,anticheatexpert.com
+  - IP-CIDR,119.28.98.172/32
+  - IP-CIDR,43.159.33.107/32
+  - IP-CIDR,175.97.170.145/32
+  - IP-CIDR,43.132.176.63/32
+  - IP-CIDR,124.158.134.171/32
+  - IP-CIDR,150.109.185.169/32
+  - IP-CIDR,202.181.78.170/32
+  - IP-CIDR,149.154.167.41/32
+  - DST-PORT,7500
+  - DST-PORT,5000
+  - DST-PORT,8700
+  - DST-PORT,8013
+  - DST-PORT,10000
+  - DST-PORT,20000
+  - DST-PORT,20002
+  - DST-PORT,50000

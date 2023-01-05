@@ -1,0 +1,25 @@
+path_clash=/data/clash
+path_config=$path_clash/config
+path_rule=$path_config/rule_provider
+path_proxy=$path_config/proxy_provider
+path_dashboard=$path_clash/dashboard
+
+mkdir -p config/proxy_provider/Backup
+mkdir -p config/rule_provider
+mkdir -p dashboard
+
+sudo cp -r $path_config .
+sudo cp -r $path_dashboard .
+sudo cp $path_clash/template $path_clash/config.yaml .
+
+rm config/proxy_provider/*.yaml
+mv config/proxy_provider/Backup/indonesia.yaml config/proxy_provider
+mv config/proxy_provider/Backup/bebas.yaml config/proxy_provider
+
+sudo chown -R 10296:10296 config config.yaml dashboard template
+sudo chmod -R 700 *
+
+git add .
+git checkout main
+git commit -m "$@"
+git push

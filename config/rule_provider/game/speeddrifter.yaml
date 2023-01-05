@@ -1,0 +1,14 @@
+payload:
+## Speed Drifters
+  - DOMAIN,vmp.qq.com
+  - DOMAIN,hkspeedmw.broker.pandora.qq.com
+  - DOMAIN,szmg.qq.com
+  - DOMAIN,image.qsm.qq.com
+  - DOMAIN,image.gqqsm.com
+  - DOMAIN,pandoracdn.itop.qq.com
+  - DOMAIN-SUFFIX,gcloud.qq.com
+  - DST-PORT,8085
+  - DST-PORT,8087
+  - DST-PORT,8086
+  - DST-PORT,8011
+  - DST-PORT,8000

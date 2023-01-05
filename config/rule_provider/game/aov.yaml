@@ -1,0 +1,9 @@
+payload:
+### AOV
+  - DOMAIN-SUFFIX,nagcloudcs.com
+  - DOMAIN-SUFFIX,gcloudcs.com
+  - DOMAIN-SUFFIX,qcloud.com
+  - DOMAIN,ts.qq.com
+  - DST-PORT,20001
+  - DST-PORT,10001
+  - DST-PORT,17000

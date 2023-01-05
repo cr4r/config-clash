@@ -1,0 +1,18 @@
+payload:
+### Mobile Legend
+  - DOMAIN,ml.aihelp.net
+  - DOMAIN-SUFFIX,youngjoygame.com
+  - DOMAIN-SUFFIX,byteoversea.com
+  - IP-CIDR,13.250.187.31/32
+  - DST-PORT,30190
+  - DST-PORT,30071
+  - DST-PORT,30220
+  - DST-PORT,30021
+  - DST-PORT,30101
+  - DST-PORT,5058
+  - DST-PORT,5000
+  - DST-PORT,5504
+  - DST-PORT,5554
+  - DST-PORT,5552
+  - DST-PORT,5057
+  - DST-PORT,5007
