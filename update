@@ -4,6 +4,8 @@ path_rule=$path_config/rule_provider
 path_proxy=$path_config/proxy_provider
 path_dashboard=$path_clash/dashboard
 
+./hapus
+
 mkdir -p config/proxy_provider/Backup
 mkdir -p config/rule_provider
 mkdir -p dashboard
@@ -12,14 +14,19 @@ sudo cp -r $path_config .
 sudo cp -r $path_dashboard .
 sudo cp $path_clash/template $path_clash/config.yaml .
 
-rm config/proxy_provider/*.yaml
-mv config/proxy_provider/Backup/indonesia.yaml config/proxy_provider
-mv config/proxy_provider/Backup/bebas.yaml config/proxy_provider
-
-sudo chown -R 10296:10296 config config.yaml dashboard template
+sudo chown -R 10365:10365 config/*
+sudo chown -R 10365:10365 config.yaml
+sudo chown -R 10365:10365 dashboard/*
+sudo chown -R 10365:10365 template
 sudo chmod -R 700 *
+
+rm ./config/proxy_provider/*.yaml
+cp ./config/proxy_provider/Backup/vmess.yaml ./config/proxy_provider/indonesia.yaml
+cp ./config/proxy_provider/Backup/vmess.yaml ./config/proxy_provider/babas.yaml
+
+komenGit=$1
 
 git add .
 git checkout main
-git commit -m "$@"
+git commit -m "$1"
 git push

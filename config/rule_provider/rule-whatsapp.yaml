@@ -18,8 +18,6 @@ payload:
   - DOMAIN,web.whatsapp.com
   - DOMAIN,www.whatsapp.com
   - DOMAIN,api.whatsapp.com
-  - DOMAIN,whatsapp.com
-  - DOMAIN,whatsapp.net
   - DOMAIN,mmg.whatsapp.net
   - DOMAIN,wa.me
   - DOMAIN-SUFFIX,fna.whatsapp.net
@@ -42,6 +40,9 @@ payload:
   - DST-PORT,5242
   - DST-PORT,5349
   - DST-PORT,34784
+  - DST-PORT,45395
+  - DST-PORT,50318
+  - DST-PORT,59234
   - DST-PORT,45395
   - DST-PORT,50318
   - DST-PORT,59234

@@ -1,66 +1,132 @@
 proxies:
+##OVH# https://www.fastssh.com/page/create-v2ray-account/server/676714/vmess-singapore-ovh-1/
+################################
+  - <<: *basevmess
+    name: OVH
+    server: *bvision1
+    uuid: a2af0f90-a56e-11ed-b035-205c6d5f5d78
+    servername: sg-2.0rd.net
+    network: ws
+    ws-opts: 
+      path: *pathServer
+      headers: 
+        Host: sg-2.0rd.net
+  - &fastssh
+    <<: *basevmess
+    name: Dynamic
+    server: *bvision1
+    uuid: e82cc3e2-571c-43f1-81a6-2ca24f4142dc
+    servername: *dynamic1
+    ws-opts:
+      path: *pathServer
+      headers:
+        Host: *dynamic1
+################################
+### Inggris
+##US1# https://www.fastssh.com/page/create-v2ray-account/server/676713/vmess-united-states-1
+  - <<: *basevmess
+    name: US1
+    server: *bvision1
+    uuid: 977254d0-a683-11ed-b636-205c6d5f5d78
+    servername: us-1.0rd.net
+    ws-opts: 
+      path: *pathServer
+      headers: 
+        Host: us-1.0rd.net
+################################
+### Indonesia
+  - &atha-fastssh
+    <<: *basevmess
+    name: Atha 1
+    server: *bvision1
+    uuid: d657d280-a567-11ed-b139-205c6d5f5d78
+    servername: sg-6.0rd.net
+    ws-opts: 
+      path: *pathServer
+      headers: 
+        Host: sg-6.0rd.net
+  - <<: *atha-fastssh
+    name: Atha 2
+    server: *bvision1
+    uuid: 3e7dd760-a56a-11ed-b533-205c6d5f5d78
+    servername: *sAmp2
+    ws-opts: 
+      path: *pathServer
+      headers: 
+        Host: *sAmp2
+### Percobaan BUG
+  - <<: *fastssh
+    name: *bvision1
+    server: *bvision1
+  - <<: *fastssh
+    name: *bvision2
+    server: *bvision2
+  - <<: *fastssh
+    name: *bvision3
+    server: *bvision3
+  - <<: *fastssh
+    name: *bvision4
+    server: *bvision4
 proxy-providers:
-  PP_Bebas:
-    type: file
-    path: "./config/proxy_provider/bebas.yaml"
-    health-check:
-      enable: true
-      url: http://www.gstatic.com/generate_204
-      interval: 50
-  PP_Indonesia:
-    type: file
-    path: "./config/proxy_provider/indonesia.yaml"
-    health-check:
-      enable: true
-      url: http://cp.cloudflare.com/generate_204
-      interval: 100
+################################
 proxy-groups:
-  - name: Best Ping
-    type: url-test
-    disable-udp: false
-    url: http://cp.cloudflare.com/generate_204
-    interval: 200
-    use:
-      - PP_Bebas
-  - name: Pilihan
-    type: select
-    disable-udp: false
-    url: http://cp.cloudflare.com/generate_204
-    interval: 200
-    use:
-      - PP_Bebas
-  - name: 🇮🇩Indonesia
-    type: url-test
-    url: http://cp.cloudflare.com/generate_204
-    interval: 200
-    disable-udp: false
-    use:
-      - PP_Indonesia
-  - name: 🌐Direct
-    type: select
+  - <<: *bestping
+    name: Best Ping
     proxies:
-      - DIRECT
-  - name: ⛔️Reject
-    type: select
+      - Dynamic
+      - OVH
+################################
+  - <<: *bestping
+    name: Indonesia
     proxies:
-      - REJECT
-  - name: 🌎Bebas
+      - Atha 1
+      - Atha 2
+################################
+  - <<: *bestping
+    name: English
+    proxies:
+      - US1
+############################################
+  - <<: *bestping
+    name: Percobaan Bug
+    proxies:
+      - *bvision1
+      - *bvision2
+      - *bvision3
+      - *bvision4
+############################################
+  - name: Final
     type: select
     disable-udp: false
-    url: http://cp.cloudflare.com/generate_204
+    url: *url-cf
     interval: 200
     proxies:
       - Best Ping
-      - Pilihan
-  - name: 🧳Mode Indonesia
+      - Indonesia
+      - English
+################################
+  - name: Mode Indonesia
     type: select
-    url: http://cp.cloudflare.com/generate_204
+    url: *url-cf
     interval: 200
     disable-udp: false
     proxies:
-      - 🇮🇩Indonesia
-      - 🌎Bebas
-      - 🌐Direct
+      - Indonesia
+      - Final
+      - English
+      - DIRECT
+      - REJECT
+################################
+############################################
+  - name: Akrab
+    type: select
+    proxies: [Final,DIRECT,REJECT]
+  - name: Vision
+    type: select
+    proxies: [Final,DIRECT,REJECT]
+  - name: Youtube
+    type: select
+    proxies: [Final,English,Indonesia,DIRECT,REJECT]
 rule-providers:
 ### classical / ipcidr / domain
   RP_Direct:
@@ -119,45 +185,44 @@ rule-providers:
     type: file
     behavior: classical
     path: "./config/rule_provider/KhususIndo/rule-ewallet.yaml"
+  RP_Akrab:
+    type: file
+    behavior: classical
+    path: "./config/rule_provider/Paket/akrab.yaml"
+  RP_Vision:
+    type: file
+    behavior: classical
+    path: "./config/rule_provider/Paket/vision.yaml"
+  RP_Youtube:
+    type: file
+    behavior: domain
+    path: "./config/rule_provider/rule-youtube.yaml"
 rules:
-  - DOMAIN,clash.razord.top,🌐Direct
-  - DOMAIN,yacd.haishan.me,🌐Direct
-  - IP-CIDR,192.18.0.1/16,⛔️Reject,no-resolve
 ### Anti gagal Block Ads
-  - DOMAIN-SUFFIX,googlesyndication.com,🌎Bebas
-  - DOMAIN-SUFFIX,googleadservices.com,⛔️Reject
-  - GEOSITE,CATEGORY-ADS-ALL,⛔️Reject
-  - GEOSITE,win-spy,⛔️Reject
-  - GEOSITE,google-ads,⛔️Reject
-### Paket Akrab
-  - RULE-SET,RP_WhatsApp,🌐Direct
-  - GEOSITE,whatsapp,🌐Direct
-  - RULE-SET,RP_Line,🌐Direct
-  - PROCESS-NAME,com.whatsapp,🌐Direct
-  - PROCESS-NAME,com.whatsapp.w4b,🌐Direct
-  - PROCESS-NAME,com.yowhatsapp,🌐Direct
-  - PROCESS-NAME,com.fmwhatsapp,🌐Direct
-  - PROCESS-NAME,com.gbwhatsapp,🌐Direct
+  - DOMAIN-SUFFIX,googlesyndication.com,Final
+  - RULE-SET,RP_Reject,REJECT
+### Paket untuk di direct
+  - RULE-SET,RP_Akrab,Akrab
+  - RULE-SET,RP_Vision,Vision
+  - RULE-SET,RP_Youtube,Youtube
 ### Fix lemot youtube
-  - AND,((GEOSITE, YOUTUBE),(NETWORK, UDP)),⛔️Reject
+  - AND,((GEOSITE, YOUTUBE),(NETWORK, UDP)),REJECT
 ### Domain Indo khusus VPN INDO
-  - AND,((DST-PORT,5228-5230),(NETWORK,TCP),(DOMAIN,mtalk.google.com)),🧳Mode Indonesia
-  - RULE-SET,RP_Video,🧳Mode Indonesia
-  - RULE-SET,RP_Musik,🧳Mode Indonesia
-  - RULE-SET,RP_Disney_Joox,🧳Mode Indonesia
-  - RULE-SET,RP_Akaimahd,🧳Mode Indonesia
-  - RULE-SET,RP_Market_Place,🧳Mode Indonesia
-  - RULE-SET,RP_Ewallet,🧳Mode Indonesia
-  - RULE-SET,RP_Domain_Indo,🧳Mode Indonesia
+  - AND,((DST-PORT,5228-5230),(NETWORK,TCP),(DOMAIN,mtalk.google.com)),Mode Indonesia
+  - RULE-SET,RP_Video,Mode Indonesia
+  - RULE-SET,RP_Musik,Mode Indonesia
+  - RULE-SET,RP_Disney_Joox,Mode Indonesia
+  - RULE-SET,RP_Akaimahd,Mode Indonesia
+  - RULE-SET,RP_Market_Place,Mode Indonesia
+  - RULE-SET,RP_Ewallet,Mode Indonesia
+  - RULE-SET,RP_Domain_Indo,Mode Indonesia
+  - GEOIP,ID,Mode Indonesia
 ### Umum
-  - RULE-SET,RP_DNS,🌎Bebas
-  - RULE-SET,RP_Direct,🌐Direct
-  - RULE-SET,RP_Lan_Domain,🌐Direct
-  - GEOIP,private,🌐Direct,no-resolve
-  - RULE-SET,RP_Lan_IP,🌐Direct,no-resolve
-### REJECT
-  - RULE-SET,RP_Reject,⛔️Reject
+  - RULE-SET,RP_Direct,DIRECT
+  - RULE-SET,RP_Lan_Domain,DIRECT
+  - RULE-SET,RP_Lan_IP,DIRECT,no-resolve
+  - GEOIP,private,DIRECT,no-resolve
+  - RULE-SET,RP_DNS,Final
 ### Yang tidak di rule otomatis kesini
-  - GEOIP,ID,🧳Mode Indonesia
-  - MATCH,🌎Bebas
+  - MATCH,Final
   - MATCH,GLOBAL

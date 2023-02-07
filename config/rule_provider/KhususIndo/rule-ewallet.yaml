@@ -27,3 +27,6 @@ payload:
   - DOMAIN-KEYWORD,paypal
   - DOMAIN-SUFFIX,paypal.com
   - DOMAIN-SUFFIX,paypalobjects.com
+### Itemku
+  - DOMAIN-SUFFIX,itemku.com
+  - DOMAIN-KEYWORD,itemku
