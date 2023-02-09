@@ -1,0 +1,14 @@
+payload:
+ - DOMAIN-SUFFIX,zoom.us
+  - DOMAIN-SUFFIX,meet.google.com
+  - DOMAIN-SUFFIX,*.office.com
+  - DOMAIN-SUFFIX,*.microsoft.com
+  - DOMAIN-SUFFIX,*.office.com
+  - DOMAIN-SUFFIX,*.officeppe.com
+  - RULE-SET,RP_WhatsApp
+  - RULE-SET,RP_Line
+  - PROCESS-NAME,com.whatsapp
+  - PROCESS-NAME,com.whatsapp.w4b
+  - PROCESS-NAME,com.yowhatsapp
+  - PROCESS-NAME,com.fmwhatsapp
+  - PROCESS-NAME,com.gbwhatsapp

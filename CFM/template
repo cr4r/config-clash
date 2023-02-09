@@ -1,0 +1,211 @@
+port: 44355
+socks-port: 7891
+mixed-port: 7892
+redir-port: 7893
+tproxy-port: 0
+mode: rule
+allow-lan: true
+unified-delay: true
+bind-address: '*'
+### info / warning / error / debug / silent
+log-level: info
+ipv6: true
+geodata-mode: true
+geodata-loader: memconservative
+external-controller: 0.0.0.0:9090
+external-ui: ./dashboard/dist
+secret: ''
+tcp-concurrent: true
+enable-process: true
+# inbound-tfo: false
+# interface-name: ''
+# routing-mark: 233
+# geox-url: {
+  # mmdb: '',
+  # geoip: '',
+  # geosite: ''
+# }
+
+profile:
+  store-selected: true
+  store-fake-ip: true
+
+experimental:
+  store-selected: true
+  store-fake-ip: true
+  tracing: true
+  #udp-fallback-match: true
+  # fingerprint: ''
+
+### sniff domain name optional configuration
+sniffer:
+  enable: true
+### sniffing protocol required
+  sniffing:
+    - tls
+    - http
+  # force sniffing on this domain name
+  force-domain:
+    - +.v2ex.com
+### Sniff only on ports in the whitelist, default 443, 80
+#  port-whitelist:
+#    - 80
+#    - 443
+  force-dns-mapping: true
+  parse-pure-ip: true
+
+tun:
+  enable: true
+  ### biarkan default utun
+  device: utun
+  #mtu: 9000
+  ### gvisor / lwip / system
+  stack: system
+  dns-hijack:
+    - 192.18.0.2:53
+  auto-route: true
+  auto-detect-interface: true
+  strict-route: false
+  inet4_address: 198.18.0.1/30
+  inet6_address: [fdfe:dcba:9876::1/126]
+  # inet4-route-address:
+    # - 0.0.0.0/1
+    # - 128.0.0.0/1
+  # inet6-route-address:
+    # - '::/1'
+    # - '8000::/1'
+  # include-android-user:
+    # - 0
+    # - 10
+
+dns:
+  enable: true
+  ipv6: true ### false akan mengembalikan hasil kosong untuk AAAA
+  prefer-h3: false
+  default-nameserver:
+    - 'https://1.1.1.1/dns-query'
+    - 'tcp://1.0.0.1'
+    - '112.215.248.124#REJECT'     ## dns xl di reject
+  listen: 0.0.0.0:1053
+  use-hosts: true
+  ### redir-host / fake-ip
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - '+.lan'
+    - '+.stun.*.*'
+    - '+.stun.*.*.*'
+    - '+.stun.*.*.*.*'
+    - '+.stun.*.*.*.*.*'
+    - 'proxy.golang.org'
+    - '+.msftconnecttest.com'
+    - '*.home.arpa'
+    - '*.local'
+    - '*.test'
+    - '*.localhost'
+    - '*.invalid'
+    - '*.example'
+    - '*.localdomain'
+    - '*.lan'
+    - 'localhost'
+    - '0.id.pool.ntp.org'
+    - '1.id.pool.ntp.org'
+    - '2.id.pool.ntp.org'
+    - '3.id.pool.ntp.org'
+  nameserver:
+    - 1.1.1.1
+    - 1.0.0.1
+    #- 127.0.0.1
+    # - tls://1.1.1.1:853 # DNS over TLS
+    # - dhcp://rmnet_data+ # dns from dhcp
+    # - https://doh.pub/dns-query # DNS over HTTPS
+    # - https://dns.alidns.com/dns-query#h3=true  # Mandatory HTTP/3, irrelevant to perfer-h3, mandatory HTTP/3 support for DoH, if not supported, it will not work
+    # - https://mozilla.cloudflare-dns.com/dns-query#DNS&h3=true # Specify policy group and use HTTP/3
+    # - quic://dns.adguard.com:784 # DNS over QUIC
+    # - '8.8.8.8#en0' # Compatible with designated DNS egress NIC
+  # nameserver-policy:
+    # '*.v2-ray.com': '1.1.1.1'
+    # '*.vmess.sbs': '1.1.1.1'
+    # '*.1server.co': '1.1.1.1'
+    # '*.serverip.xyz': '1.1.1.1'
+    # '*.bypass.id': '1.1.1.1'
+  fallback:
+     #- 123.123.123.123
+     - '1.1.1.1#Final'
+  fallback-filter:
+    geoip: true
+    geoip-code: 'ID'
+    geosite: [gfw]
+    ipcidr: 
+      - 0.0.0.0/8
+      - 127.0.0.0/8
+      - 123.123.123.0/24
+      - 255.255.255.255/32
+    domain:
+      - '+.google.com'
+      - '+.zoom.us'
+      - '+.visionplus.id'
+      - '+.facebook.com'
+      - '+.youtube.com'
+
+hosts:
+  '+.clash.meta': 127.0.0.1
+  'ota.googlezip.net': 127.0.0.1
+  'ota-cache1.googlezip.net': 127.0.0.1
+  'ota-cache2.googlezip.net': 127.0.0.1
+
+base-bug:
+  bug:
+    - &bvision1 104.21.235.171     ### analytics-api.visionplus.id
+    - &bvision2 visionplus.id
+    - &bvision3 104.18.31.185       ### akrab
+    - &bvision4 104.16.51.111        ### akrab
+
+    - &btiktok1 151.101.110.73      ### v19-webapp-prime.tiktok.com
+    - &btiktok2 library.tiktok.com          ### library.tiktok.com
+    - &btiktok3 www.tiktoktv.com
+    - &btiktok4 vt.tiktok.com
+    
+    - &pathServer '/worryfree'
+    
+    - &dynamic1 dynamic-sg1b.obfs.xyz
+    - &dynamic2 dynamic-sg2b.obfs.xyz
+    
+    - &sAmp2 sg-7.0rd.net
+    
+base-proxy:
+  vmess:
+    - &basevmess
+      type: vmess
+      port: 443
+      alterId: 0
+      cipher: auto
+      udp: true
+      udp-over-tcp: true
+      network: ws
+      tls: true
+      skip-cert-verify: true
+  trojan:
+    - &basetrojan
+      type: trojan
+      port: 443
+      udp: true
+      skip-cert-verify: true
+      network: ws
+  gfw:
+    - &basegrpc
+      type: trojan
+      port: 443
+      udp: true
+      skip-cert-verify: true
+
+base-proxy-group:
+  terbaik:
+    - &bestping
+      disable-udp: false
+      interval: 200
+      type: url-test
+      url-test: http://cp.cloudflare.com/generate_204
+  url:
+    - &url-gg http://www.gstatic.com/generate_204
+    - &url-cf http://cp.cloudflare.com/generate_204

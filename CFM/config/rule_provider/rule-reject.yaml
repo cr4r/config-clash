@@ -1,0 +1,6 @@
+payload:
+  - IP-CIDR,192.18.0.1/16,no-resolve
+  - DOMAIN-SUFFIX,googleadservices.com
+  - GEOSITE,CATEGORY-ADS-ALL
+  - GEOSITE,win-spy
+  - GEOSITE,google-ads

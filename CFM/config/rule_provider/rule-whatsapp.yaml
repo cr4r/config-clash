@@ -1,0 +1,48 @@
+payload:
+  #### WHATSAPP
+  - DOMAIN-KEYWORD,whatsapp
+  - DOMAIN-SUFFIX,whatsappbrand.com
+  - DOMAIN,oculus.com
+  - DOMAIN,oculuscdn.com
+  - DOMAIN,rocksdb.org
+  - DOMAIN,whatsapp.com
+  - DOMAIN,whatsapp.net
+  - DOMAIN-SUFFIX,*.whatsapp.com
+  - DOMAIN-SUFFIX,*.whatsapp.net    
+  - DOMAIN-SUFFIX,*.rocksdb.org
+  - DOMAIN-SUFFIX,*.oculuscdn.com
+  - DOMAIN-SUFFIX,*.oculus.com
+  - DOMAIN-SUFFIX,*.wa.com
+  - DOMAIN-SUFFIX,v.whatsapp.net
+  - DOMAIN,whatsapp-chatd-edge-shv-02-lax3.facebook.com
+  - DOMAIN,web.whatsapp.com
+  - DOMAIN,www.whatsapp.com
+  - DOMAIN,api.whatsapp.com
+  - DOMAIN,mmg.whatsapp.net
+  - DOMAIN,wa.me
+  - DOMAIN-SUFFIX,fna.whatsapp.net
+  - DOMAIN-SUFFIX,whatsapp-plus.info
+  - DOMAIN-SUFFIX,whatsapp-plus.me
+  - DOMAIN-SUFFIX,whatsapp-plus.net
+  - DOMAIN-SUFFIX,whatsapp.cc
+  - DOMAIN-SUFFIX,whatsapp.com
+  - DOMAIN-SUFFIX,whatsapp.info
+  - DOMAIN-SUFFIX,whatsapp.net
+  - DOMAIN-SUFFIX,whatsapp.org
+  - DOMAIN-SUFFIX,whatsapp.tv
+  - DOMAIN-SUFFIX,whatsappbrand.com
+  - DST-PORT,3478
+  - DST-PORT,4244
+#  - DST-PORT,5222  ## Membuat VC tidak bisa
+  - DST-PORT,5223
+##  - DST-PORT,5228 ## tabrakan mtalk.google
+##  - DST-PORT,5288 ## mtalk.google pakai ini juga
+  - DST-PORT,5242
+  - DST-PORT,5349
+  - DST-PORT,34784
+  - DST-PORT,45395
+  - DST-PORT,50318
+  - DST-PORT,59234
+  - DST-PORT,45395
+  - DST-PORT,50318
+  - DST-PORT,59234

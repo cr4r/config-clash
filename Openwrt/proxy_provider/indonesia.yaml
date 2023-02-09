@@ -1,0 +1,36 @@
+proxies:
+  - name: atha-fastssh-1
+    uuid: d657d280-a567-11ed-b139-205c6d5f5d78
+    servername: sg-6.0rd.net
+    server: 104.21.235.171
+    type: vmess
+    port: 443
+    alterId: 0
+    cipher: auto
+    udp: true
+    udp-over-tcp: true
+    tls: true
+    skip-cert-verify: true
+    network: ws
+    ws-opts: 
+      path: /worryfree
+      headers: 
+        Host: sg-6.0rd.net
+      
+  - name: atha-fastssh-2
+    uuid: 3e7dd760-a56a-11ed-b533-205c6d5f5d78
+    servername: sg-7.0rd.net
+    server: 104.21.235.171
+    type: vmess
+    port: 443
+    alterId: 0
+    cipher: auto
+    udp: true
+    udp-over-tcp: true
+    network: ws
+    tls: true
+    skip-cert-verify: true
+    ws-opts: 
+      path: /worryfree
+      headers: 
+        Host: sg-7.0rd.net

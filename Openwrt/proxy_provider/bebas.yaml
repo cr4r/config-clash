@@ -1,0 +1,36 @@
+proxies:
+  - name: OVH-Fastssh
+    uuid: a2af0f90-a56e-11ed-b035-205c6d5f5d78
+    servername: sg-2.0rd.net
+    server: 104.21.235.171
+    type: vmess
+    port: 443
+    alterId: 0
+    cipher: auto
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    udp-over-tcp: true
+    network: ws
+    ws-opts: 
+      path: /worryfree
+      headers: 
+        Host: sg-2.0rd.net
+
+  - name: Dynamic-Fastssh
+    server: 104.21.235.171
+    type: vmess
+    uuid: e82cc3e2-571c-43f1-81a6-2ca24f4142dc
+    port: 443
+    alterId: 0
+    cipher: auto
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    udp-over-tcp: true
+    network: ws
+    servername: dynamic-sg1b.obfs.xyz
+    ws-opts: 
+      path: /worryfree
+      headers: 
+        Host: dynamic-sg1b.obfs.xyz  
