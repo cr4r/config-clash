@@ -169,7 +169,7 @@ base-bug:
     - &pathServer '/worryfree'
     
     - &dynamic1 dynamic-sg1b.obfs.xyz
-    
+    - &dynamic2 dynamic-sg2b.obfs.xyz
     - &sAmp2 sg-7.0rd.net
     
 base-proxy:

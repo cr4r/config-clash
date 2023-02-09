@@ -15,12 +15,12 @@ proxies:
     <<: *basevmess
     name: Dynamic
     server: *bvision1
-    uuid: e82cc3e2-571c-43f1-81a6-2ca24f4142dc
-    servername: *dynamic1
+    uuid: 0bea625a-1ea8-40da-bb86-0740b828b196
+    servername: *dynamic2
     ws-opts:
       path: *pathServer
       headers:
-        Host: *dynamic1
+        Host: *dynamic2
 ################################
 ### Inggris
 ##US1# https://www.fastssh.com/page/create-v2ray-account/server/676713/vmess-united-states-1
