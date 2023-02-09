@@ -70,7 +70,7 @@ else
   elif [[ $1 == 2 ]]; then
     echo "Comming Soon :D"
   elif [[ $1 == 3 ]]; then
-    up_repo
+    update_geo
   else
     echo "Ketik 1,2 atau 3"
     echo "1 untuk CFM"

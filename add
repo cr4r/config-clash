@@ -1,0 +1,20 @@
+if [[ $1 == 1 ]]; then
+  ### CFM
+  gNetAdmin=3005
+  path_clash=/data/clash
+  ### Copy Data di repo ke /data/clash
+  cp GeoSite.dat GeoIP.dat CFM/
+  sudo cp -r CFM/* /data/clash/
+  ### Atur Kepemilikan
+  sudo chown -R 0:$gNetAdmin $path_clash/config.yaml $path_clash/template $path_clash/dashboard 
+  sudo chown -R 0:0 $path_clash/config $path_clash/GeoSite.dat $path_clash/GeoIP.dat
+  ### Atur Permission
+  sudo chmod 700 $path_clash/config.yaml
+  sudo chmod 644 $path_clash/template
+  sudo chmod 777 $path_clash/config $path_clash/dashboard $path_clash/GeoSite.dat $path_clash/GeoIP.dat
+elif [[ $1 == 2 ]]; then
+  chmod -R 777 openwrt/*
+  chown -R 0:0 openwrt/*
+  cp GeoSite.dat GeoIP.dat openwrt/
+  cp -r openwrt/* /etc/openclash/
+fi
