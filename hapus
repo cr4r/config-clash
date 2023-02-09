@@ -1,1 +1,3 @@
-sudo rm -rf config* template dashboard
+home_repo=$(pwd)/CFM
+
+sudo rm -rf $home_repo/config* $home_repo/template $home_repo/dashboard
