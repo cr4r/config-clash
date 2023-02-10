@@ -12,21 +12,22 @@ CFM(){
 
   ### repo
   home_repo=$(pwd)/CFM
-  path_config=$home_repo/config
+  path_config_repo=$home_repo/config
   path_proxy_repo=$path_config/proxy_provider
+  path_rule_repo=$path_config/rule_provider
   path_backup_repo=$path_proxy_repo/Backup
 
   ### hapus repo lama
   sudo rm -rf $home_repo/config* $home_repo/template $home_repo/dashboard
 
-  mkdir -p $path_config/proxy_provider/Backup $path_config/rule_provider
+  mkdir -p $path_config_repo/proxy_provider/Backup $path_config_repo/rule_provider
   mkdir -p $home_repo/dashboard
 
-  sudo cp -r $path_config $home_repo
+  sudo cp -r $path_rule $home_repo
   sudo cp -r $path_dashboard $home_repo
   sudo cp $path_clash/template $path_clash/config.yaml $home_repo
 
-  sudo chown -R $uuid:$ggid $path_config/config/*
+  sudo chown -R $uuid:$ggid $path_config/*
   sudo chown -R $uuid:$ggid $home_repo/config.yaml
   sudo chown -R $uuid:$ggid $home_repo/dashboard/*
   sudo chown -R $uuid:$ggid $home_repo/template
@@ -34,7 +35,7 @@ CFM(){
 
   rm $path_proxy_repo/*.yaml
   cp $path_backup_repo/vmess.yaml $path_proxy_repo/indonesia.yaml
-  cp $path_backup_repo/vmess.yaml $path_proxy_repo/babas.yaml
+  cp $path_backup_repo/vmess.yaml $path_proxy_repo/bebas.yaml
 
   cp -r $path_config/rule_provider Openwrt/rule_provider
 }
