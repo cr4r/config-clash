@@ -12,117 +12,171 @@ secret: "123"
 bind-address: "*"
 external-ui: "/usr/share/openclash/ui"
 ipv6: true
+## ================= META Core ==================
+geodata-mode: true
+geodata-loader: memconservative
+tcp-concurrent: true
+sniffer:
+  enable: true
+  sniffing:
+  - tls
+  - http
+  ForceDnsMapping: true
+  ParsePureIp: true
+## ================= TUN Core ==================
 tun:
   enable: true
   stack: system
+  auto-detect-interface: false
   dns-hijack:
-    - 192.18.0.2:53
+  - 192.18.0.2:53
+## ================= Profile ==================
 profile:
   store-selected: true
   store-fake-ip: true
-
-# ================= Coders Family ==================
+## ================= Experimental ==================
+experimental:
+  ignore-resolve-fail: true
+  sniff-tls-sni: true
+  udp-fallback-match: true
+## ================= Tempat Proxy ==================
 proxy-providers:
   PP-Final:
     type: file
     path: "./proxy_provider/bebas.yaml"
     health-check:
       enable: true
-      url: http://www.gstatic.com/generate_204
-      interval: 100
+      url: http://cp.cloudflare.com/generate_204
+      interval: 50
   PP-Indonesia:
     type: file
     path: "./proxy_provider/indonesia.yaml"
     health-check:
       enable: true
-      url: http://www.gstatic.com/generate_204
+      url: http://cp.cloudflare.com/generate_204
+      interval: 50
+  PP-USA:
+    type: file
+    path: "./proxy_provider/usa.yaml"
+    health-check:
+      enable: true
+      url: http://cp.cloudflare.com/generate_204
       interval: 100
-# ================= Coders Family ==================
+## ================= Proxy digabungkan ==================
 proxy-groups:
+  - name: DNS
+    type: select
+    disable-udp: false
+    proxies:
+    - Semua
+    - Final
+    - Indonesia
+    url: http://cp.cloudflare.com/generate_204
+    interval: '50'
   - name: Final
     type: url-test
     disable-udp: false
     use:
-      - PP-Final
-    url: http://www.gstatic.com/generate_204
+    - PP-Final
+  - name: Semua
+    type: url-test
+    disable-udp: false
+    use:
+    - PP-Final
+    - PP-Indonesia
+    url: http://cp.cloudflare.com/generate_204
     interval: '100'
   - name: Indonesia
     type: url-test
     disable-udp: false
     use:
-      - PP-Indonesia
-    url: http://www.gstatic.com/generate_204
-    interval: '100'
-
-  - name: Mode Indonesia
+    - PP-Indonesia
+    url: http://cp.cloudflare.com/generate_204
+    interval: '50'
+  - name: USA
     type: url-test
     disable-udp: false
+    use:
+    - PP-USA
+    url: http://cp.cloudflare.com/generate_204
+    interval: '50'
+##### Grub Proxy Indonesia
+  - name: Mode Indonesia
+    type: select
+    disable-udp: false
     proxies:
-      - Indonesia
-      - Final
-      - DIRECT
-      - REJECT 
+    - Indonesia
+    - USA
+    - Semua
+    - DIRECT
+    - REJECT 
+##### Web dan Proxy Tertentu
   - name: Akrab
     type: select
-    proxies: [Final,DIRECT,REJECT]
+    proxies: [Semua,Indonesia,USA,DIRECT,REJECT]
   - name: Vision
     type: select
-    proxies: [Final,DIRECT,REJECT]
+    proxies: [Semua,Indonesia,USA,DIRECT,REJECT]
   - name: Youtube
     type: select
-    proxies: [Final,Indonesia,DIRECT,REJECT]
-
+    proxies: [Semua,Indonesia,USA,DIRECT,REJECT]
+## ================= Pengaturan DNS ==================
 dns:
-  nameserver:
-    - 1.1.1.1
-    - 1.0.0.1
   enable: true
   ipv6: true
+  auto-detect-interface: true
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   listen: 127.0.0.1:7874
   fake-ip-filter:
-    - '+.lan'
-    - '+.stun.*.*'
-    - '+.stun.*.*.*'
-    - '+.stun.*.*.*.*'
-    - '+.stun.*.*.*.*.*'
-    - 'proxy.golang.org'
-    - '+.msftconnecttest.com'
-    - '*.home.arpa'
-    - '*.local'
-    - '*.test'
-    - '*.localhost'
-    - '*.invalid'
-    - '*.example'
-    - '*.localdomain'
-    - '*.lan'
-    - 'localhost'
-    - '0.id.pool.ntp.org'
-    - '1.id.pool.ntp.org'
-    - '2.id.pool.ntp.org'
-    - '3.id.pool.ntp.org'
+  - '+.lan'
+  - '+.stun.*.*'
+  - '+.stun.*.*.*'
+  - '+.stun.*.*.*.*'
+  - '+.stun.*.*.*.*.*'
+  - 'proxy.golang.org'
+  - '+.msftconnecttest.com'
+  - '*.home.arpa'
+  - '*.local'
+  - '*.test'
+  - '*.localhost'
+  - '*.invalid'
+  - '*.example'
+  - '*.localdomain'
+  - '*.lan'
+  - 'localhost'
+  - '0.id.pool.ntp.org'
+  - '1.id.pool.ntp.org'
+  - '2.id.pool.ntp.org'
+  - '3.id.pool.ntp.org'
+  proxy-server-nameserver:
+  - https://cloudflare-dns.com/dns-query
+  nameserver:
+  - https://cloudflare-dns.com/dns-query
   default-nameserver:
-    - 'https://1.1.1.1/dns-query'
-    - 'tcp://1.0.0.1'
-    - '112.215.248.124#REJECT'     ## dns xl di reject
+  - 1.1.1.1
+  - 1.0.0.1
+  - 112.215.248.124#REJECT
   fallback:
-    - '1.1.1.1#Final'
+  - https://cloudflare-dns.com/dns-query#Final
   fallback-filter:
     geoip: true
     geoip-code: 'ID'
-    geosite: [gfw]
+    geosite:
+    - gfw
     ipcidr: 
-      - 0.0.0.0/8
-      - 127.0.0.0/8
-      - 123.123.123.0/24
-      - 255.255.255.255/32
+    - 0.0.0.0/8
+    - 127.0.0.0/8
+    - 123.123.123.0/24
+    - 192.168.0.0/16
+    - 255.255.255.255/32
     domain:
-      - '+.google.com'
-      - '+.zoom.us'
-      - '+.visionplus.id'
-      - '+.facebook.com'
-      - '+.youtube.com'
+    - '+.google.com'
+    - '+.zoom.us'
+    - '+.visionplus.id'
+    - '+.facebook.com'
+    - '+.youtube.com'
+## ================= Tempat Rules ==================
 rule-providers:
 ### classical / ipcidr / domain
   RP_Direct:
@@ -133,6 +187,10 @@ rule-providers:
     type: file
     behavior: classical
     path: "./rule_provider/rule-reject.yaml"
+  RP_Indonesia:
+    type: file
+    behavior: classical
+    path: "./rule_provider/rule-indo-indonesia.yaml"
   RP_WhatsApp:
     type: file
     behavior: classical
@@ -156,46 +214,56 @@ rule-providers:
   RP_Video:
     type: file
     behavior: classical
-    path: "./rule_provider/KhususIndo/rule-video.yaml"
+    path: "./rule_provider/rule-indo-video.yaml"
   RP_Musik:
     type: file
     behavior: classical
-    path: "./rule_provider/KhususIndo/rule-musik.yaml"
+    path: "./rule_provider/rule-indo-musik.yaml"
   RP_Domain_Indo:
     type: file
     behavior: classical
-    path: "./rule_provider/KhususIndo/rule-domain-indo.yaml"
+    path: "./rule_provider/rule-indo-domain-indo.yaml"
   RP_Akaimahd:
     type: file
     behavior: classical
-    path: "./rule_provider/KhususIndo/rule-akaimahd.yaml"
+    path: "./rule_provider/rule-indo-akaimahd.yaml"
   RP_Disney_Joox:
     type: file
     behavior: classical
-    path: "./rule_provider/KhususIndo/rule-disney-joox.yaml"
+    path: "./rule_provider/rule-indo-disney-joox.yaml"
   RP_Market_Place:
     type: file
     behavior: classical
-    path: "./rule_provider/KhususIndo/rule-market-place.yaml"
+    path: "./rule_provider/rule-indo-market-place.yaml"
   RP_Ewallet:
     type: file
     behavior: classical
-    path: "./rule_provider/KhususIndo/rule-ewallet.yaml"
+    path: "./rule_provider/rule-indo-ewallet.yaml"
   RP_Akrab:
     type: file
     behavior: classical
-    path: "./rule_provider/Paket/akrab.yaml"
+    path: "./rule_provider/rule-paket-akrab.yaml"
   RP_Vision:
     type: file
     behavior: classical
-    path: "./rule_provider/Paket/vision.yaml"
+    path: "./rule_provider/rule-paket-vision.yaml"
   RP_Youtube:
     type: file
-    behavior: domain
-    path: "./rule_provider/rule-youtube.yaml"  
+    behavior: classical
+    path: "./rule_provider/rule-youtube.yaml"
+  RP_USA:
+    type: file
+    behavior: classical
+    path: "./rule_provider/rule-USA.yaml"
+## ================= Script (BETA) =================
+# script:
+#   code: |
+#     def main(ctx, metadata):
+#       ip = ctx.resolve_ip(metadata["host"])
+## ================= Atur Semua Rules ==================
 rules:
 ### Anti gagal Block Ads
-- DOMAIN-SUFFIX,googlesyndication.com,Final
+- DOMAIN-SUFFIX,googlesyndication.com,Semua
 - RULE-SET,RP_Reject,REJECT
 ### Paket untuk di direct
 - RULE-SET,RP_Akrab,Akrab
@@ -205,20 +273,13 @@ rules:
 - AND,((GEOSITE, YOUTUBE),(NETWORK, UDP)),REJECT
 ### Domain Indo khusus VPN INDO
 - AND,((DST-PORT,5228-5230),(NETWORK,TCP),(DOMAIN,mtalk.google.com)),Mode Indonesia
-- RULE-SET,RP_Video,Mode Indonesia
-- RULE-SET,RP_Musik,Mode Indonesia
-- RULE-SET,RP_Disney_Joox,Mode Indonesia
-- RULE-SET,RP_Akaimahd,Mode Indonesia
-- RULE-SET,RP_Market_Place,Mode Indonesia
-- RULE-SET,RP_Ewallet,Mode Indonesia
-- RULE-SET,RP_Domain_Indo,Mode Indonesia
-- GEOIP,ID,Mode Indonesia
+- RULE-SET,RP_Indonesia,Mode Indonesia
 ### Umum
 - RULE-SET,RP_Direct,DIRECT
 - RULE-SET,RP_Lan_Domain,DIRECT
 - RULE-SET,RP_Lan_IP,DIRECT,no-resolve
 - GEOIP,private,DIRECT,no-resolve
-- RULE-SET,RP_DNS,Final
+- RULE-SET,RP_DNS,DNS
+- RULE-SET,RP_USA,USA
 ### Yang tidak di rule otomatis kesini
-- MATCH,Final
 - MATCH,GLOBAL

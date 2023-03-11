@@ -1,0 +1,4 @@
+payload:
+  - DOMAIN-SUFFIX,*.visionplus.id
+  - DOMAIN,visionplus.id
+  - DOMAIN-KEYWORD,visionplus

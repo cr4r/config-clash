@@ -1,0 +1,77 @@
+### analytics-api.visionplus.id
+proxies:
+### https://www.fastssh.com/page/create-v2ray-account/server/676739/vmess-c-usa--seattle/
+  - name: Seattle-Fastssh
+    server: 104.21.235.172
+    type: vmess
+    uuid: fed76b00-bc88-11ed-b235-205c6d5f5d78
+    port: 443
+    alterId: 0
+    cipher: auto
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    udp-over-tcp: true
+    network: ws
+    servername: us-11.0rd.net
+    ws-opts: 
+      path: /worryfree
+      headers: 
+        Host: us-11.0rd.net
+
+### https://www.fastssh.com/page/create-v2ray-account/server/676740/vmess-c-usa--newyork/
+  - name: newyork-Fastssh
+    server: 104.21.235.172
+    type: vmess
+    uuid: b0f78b40-bc8d-11ed-b530-205c6d5f5d78
+    port: 443
+    alterId: 0
+    cipher: auto
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    udp-over-tcp: true
+    network: ws
+    servername: us-12.0rd.net
+    ws-opts: 
+      path: /worryfree
+      headers: 
+        Host: us-12.0rd.net
+        
+### https://www.fastssh.com/page/create-v2ray-account/server/676738/vmess-usa-las-vegas/
+  - name: Las-Vegas-Fastssh
+    server: 104.21.235.172
+    type: vmess
+    uuid: 4a935910-bc8e-11ed-b539-205c6d5f5d78
+    port: 443
+    alterId: 0
+    cipher: auto
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    udp-over-tcp: true
+    network: ws
+    servername: us-4.0rd.net
+    ws-opts: 
+      path: /worryfree
+      headers: 
+        Host: us-4.0rd.net
+        
+### https://www.fastssh.com/page/create-v2ray-account/server/676744/vmess-usa-ipv4+ipv6/        
+  - name: US-IPV4
+    server: 104.21.235.172
+    type: vmess
+    uuid: 9f1bf700-bf0e-11ed-b637-205c6d5f5d78
+    port: 443
+    alterId: 0
+    cipher: auto
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    udp-over-tcp: true
+    network: ws
+    servername: us-14.0rd.net
+    ws-opts: 
+      path: /gbkay3ot
+      headers: 
+        Host: us-14.0rd.net

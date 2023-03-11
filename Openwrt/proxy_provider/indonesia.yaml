@@ -1,8 +1,9 @@
+### 104.21.235.172
 proxies:
+### https://www.fastssh.com/page/create-v2ray-account/server/676723/vmess-singapore-amp-1/
   - name: atha-fastssh-1
-    uuid: d657d280-a567-11ed-b139-205c6d5f5d78
-    servername: sg-6.0rd.net
-    server: 104.21.235.171
+    uuid: d4ebba90-bfc8-11ed-b435-205c6d5f5d78
+    server: 104.21.235.172
     type: vmess
     port: 443
     alterId: 0
@@ -12,15 +13,16 @@ proxies:
     tls: true
     skip-cert-verify: true
     network: ws
+    servername: sg-6.0rd.net
     ws-opts: 
       path: /worryfree
       headers: 
         Host: sg-6.0rd.net
       
+### https://www.fastssh.com/page/create-v2ray-account/server/676725/vmess-singapore-amp-2/
   - name: atha-fastssh-2
-    uuid: 3e7dd760-a56a-11ed-b533-205c6d5f5d78
-    servername: sg-7.0rd.net
-    server: 104.21.235.171
+    uuid: 94302220-bfc8-11ed-b930-205c6d5f5d78
+    server: 104.21.235.172
     type: vmess
     port: 443
     alterId: 0
@@ -30,7 +32,27 @@ proxies:
     network: ws
     tls: true
     skip-cert-verify: true
+    servername: sg-7.0rd.net
     ws-opts: 
-      path: /worryfree
+      path: /od967rsh
       headers: 
         Host: sg-7.0rd.net
+
+### https://www.fastssh.com/page/create-v2ray-account/server/676721/vmess-indonesia-herza-limit/
+  - name: Herza-Limit-fastssh
+    uuid: 1638b8d0-bfc9-11ed-b234-205c6d5f5d78
+    server: 104.21.235.172
+    type: vmess
+    port: 443
+    alterId: 0
+    cipher: auto
+    udp: true
+    udp-over-tcp: true
+    network: ws
+    tls: true
+    skip-cert-verify: true
+    servername: id-1.0rd.net
+    ws-opts: 
+      path: /7afxu30c
+      headers: 
+        Host: id-1.0rd.net

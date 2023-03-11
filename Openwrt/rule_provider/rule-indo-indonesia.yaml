@@ -1,0 +1,9 @@
+payload:
+  - RULE-SET,RP_Video
+  - RULE-SET,RP_Musik
+  - RULE-SET,RP_Disney_Joox
+  - RULE-SET,RP_Akaimahd
+  - RULE-SET,RP_Market_Place
+  - RULE-SET,RP_Ewallet
+  - RULE-SET,RP_Domain_Indo
+  - GEOIP,ID
