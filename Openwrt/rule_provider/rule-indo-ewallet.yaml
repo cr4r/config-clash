@@ -22,7 +22,7 @@ payload:
   - DOMAIN-KEYWORD,shopeepay
   - DOMAIN-KEYWORD,grab
   - DOMAIN-KEYWORD,grabtaxi
-# > PayPal
+### PayPal
   - USER-AGENT,PayPal*
   - DOMAIN-KEYWORD,paypal
   - DOMAIN-SUFFIX,paypal.com
@@ -30,3 +30,52 @@ payload:
 ### Itemku
   - DOMAIN-SUFFIX,itemku.com
   - DOMAIN-KEYWORD,itemku
+### Bank Jago
+  - DOMAIN-KEYWORD,jago
+  - DOMAIN-KEYWORD,bank
+  - DOMAIN,jago.com
+  - DOMAIN-SUFFIX,jago.com
+  - DOMAIN-SUFFIX,api.jago.com
+  - DOMAIN-SUFFIX,data.jago.com
+  
+#
+# M-Banking
+  - DOMAIN-SUFFIX,bri.co.id
+  - DOMAIN-SUFFIX,bni.co.id
+  - DOMAIN-SUFFIX,klikbca.com
+  - DOMAIN-SUFFIX,mandiri.co.id
+  - DOMAIN-SUFFIX,bankbsi.co.id
+  - DOMAIN-SUFFIX,cimbniaga.co.id
+  - DOMAIN-SUFFIX,jago.com
+  - DOMAIN-SUFFIX,ably.io
+  - DOMAIN-SUFFIX,bsm.co.id
+  - DOMAIN-SUFFIX,bankmuamalat.co.id
+  - DOMAIN-SUFFIX,bankjateng.co.id
+  - DOMAIN-SUFFIX,bankkalsel.co.id
+  - DOMAIN-SUFFIX,bankaceh.co.id
+  - DOMAIN-SUFFIX,banksumut.co.id
+  - DOMAIN-SUFFIX,banknagari.co.id
+  - DOMAIN-SUFFIX,banklampung.co.id
+  - DOMAIN-SUFFIX,bankbandung.co.id
+  - DOMAIN-SUFFIX,bankkalteng.co.id
+  - DOMAIN-SUFFIX,bankkaltim.co.id
+  - DOMAIN-SUFFIX,bankkalbar.co.id
+  - DOMAIN-SUFFIX,bankkaltara.co.id
+  - DOMAIN-SUFFIX,banksulsel.co.id
+  - DOMAIN-SUFFIX,banksulteng.co.id
+  - DOMAIN-SUFFIX,banksultra.co.id
+  - DOMAIN-SUFFIX,banksulbar.co.id
+  - DOMAIN-SUFFIX,.banksultim.co.id
+  - DOMAIN-SUFFIX,bankpapua.co.id
+ #Go-Pay [Go-Jek]
+  - DOMAIN-KEYWORD,gopay-topup
+
+ #OVO
+  - DOMAIN-SUFFIX,ovo.id
+
+ #Dana
+  - DOMAIN-SUFFIX,split.io
+  - DOMAIN-SUFFIX,innov8.id
+
+ #Doku
+  - DOMAIN-SUFFIX,dokuwallet.com

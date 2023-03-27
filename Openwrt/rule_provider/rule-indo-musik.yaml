@@ -13,3 +13,6 @@ payload:
   - DOMAIN-SUFFIX,spotilocal.com
   - DOMAIN-SUFFIX,tospotify.com
   - DOMAIN-KEYWORD,spotify
+#
+# > JOOX
+  - DOMAIN-SUFFIX,joox.com

@@ -1,5 +1,22 @@
 ### analytics-api.visionplus.id
 proxies:
+  - name: sniff orang 1
+    uuid: ee8f86aa-1255-449b-be1a-b885739b1b10
+    server: 104.22.5.240
+    servername: alibaba.rizkihdytvpnstore.me
+    type: vmess
+    port: 443
+    alterId: 0
+    cipher: auto
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    udp-over-tcp: true
+    network: ws
+    ws-opts: 
+      path: /vmess
+      headers: 
+        Host: alibaba.rizkihdytvpnstore.me
 ### https://www.fastssh.com/page/create-v2ray-account/server/676739/vmess-c-usa--seattle/
   - name: Seattle-Fastssh
     server: 104.21.235.172

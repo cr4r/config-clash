@@ -2,5 +2,26 @@ payload:
   - IP-CIDR,192.18.0.1/16,no-resolve
   - DOMAIN-SUFFIX,googleadservices.com
   - GEOSITE,CATEGORY-ADS-ALL
+  - GEOSITE,CATEGORY-ADS-ALL@ADS
+  - GEOSITE,PINTEREST@ADS
+  - GEOSITE,XHAMSTER@ADS
   - GEOSITE,win-spy
   - GEOSITE,google-ads
+  - DOMAIN-SUFFIX,api.bugsnag.com
+  - DOMAIN-SUFFIX,app.bugsnag.com
+  - DOMAIN-SUFFIX,browser.sentry-cdn.com
+  - DOMAIN-SUFFIX,app.getsentry.com
+  - DOMAIN-SUFFIX,advertising.yahoo.com
+  - DOMAIN-SUFFIX,log.fc.yahoo.com
+  - DOMAIN-SUFFIX,appmetrica.yandex.ru
+  - DOMAIN-SUFFIX,advertising.yandex.ru
+  - DOMAIN-SUFFIX,iot-eu-logser.realme.com
+  - DOMAIN-SUFFIX,iot-eu.realme.com
+  - DOMAIN-SUFFIX,bdapi-in-ads.realme.com
+  - DOMAIN-SUFFIX,adsfs.oppomobile.com
+  - DOMAIN-SUFFIX,tracking.rus.xiaomi.com
+  - DOMAIN-SUFFIX,advertising-api-eu.amazon.com
+  - DOMAIN-SUFFIX,advice-ads.s3.amazonaws.com
+  - DOMAIN-SUFFIX,ads.youtube.com
+  - DOMAIN-KEYWORD,ads
+  - DOMAIN-KEYWORD,google-ads

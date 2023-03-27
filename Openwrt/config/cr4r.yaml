@@ -39,15 +39,32 @@ experimental:
   ignore-resolve-fail: true
   sniff-tls-sni: true
   udp-fallback-match: true
+## ================= Percobaan ==================  
+base-bug:
+  bug:
+    - &bvision1 104.21.235.171
+base-proxy:
+  vmess:
+    - &basevmess
+      type: vmess
+      port: 443
+      alterId: 0
+      cipher: auto
+      udp: true
+      udp-over-tcp: true
+      network: ws
+      tls: true
+      skip-cert-verify: true  
 ## ================= Tempat Proxy ==================
 proxy-providers:
-  PP-Final:
+  PP-Singapura:
     type: file
     path: "./proxy_provider/bebas.yaml"
     health-check:
       enable: true
       url: http://cp.cloudflare.com/generate_204
       interval: 50
+      
   PP-Indonesia:
     type: file
     path: "./proxy_provider/indonesia.yaml"
@@ -61,31 +78,34 @@ proxy-providers:
     health-check:
       enable: true
       url: http://cp.cloudflare.com/generate_204
-      interval: 100
+      interval: 200
 ## ================= Proxy digabungkan ==================
 proxy-groups:
-  - name: DNS
-    type: select
-    disable-udp: false
-    proxies:
-    - Semua
-    - Final
-    - Indonesia
-    url: http://cp.cloudflare.com/generate_204
-    interval: '50'
-  - name: Final
-    type: url-test
-    disable-udp: false
-    use:
-    - PP-Final
   - name: Semua
     type: url-test
     disable-udp: false
     use:
-    - PP-Final
+    - PP-Singapura
     - PP-Indonesia
+    - PP-USA
     url: http://cp.cloudflare.com/generate_204
     interval: '100'
+  - name: Pilihan
+    type: select
+    disable-udp: false
+    use:
+    - PP-Singapura
+    - PP-Indonesia
+    - PP-USA
+    url: http://cp.cloudflare.com/generate_204
+    interval: '50'    
+  - name: Singapura
+    type: url-test
+    disable-udp: false
+    use:
+    - PP-Singapura
+    url: http://cp.cloudflare.com/generate_204
+    interval: '100'    
   - name: Indonesia
     type: url-test
     disable-udp: false
@@ -99,7 +119,17 @@ proxy-groups:
     use:
     - PP-USA
     url: http://cp.cloudflare.com/generate_204
-    interval: '50'
+    interval: '200'
+  - name: DNS
+    type: select
+    disable-udp: false
+    proxies:
+    - Semua
+    - Singapura
+    - Indonesia
+    - DIRECT
+    url: http://cp.cloudflare.com/generate_204
+    interval: '50'    
 ##### Grub Proxy Indonesia
   - name: Mode Indonesia
     type: select
@@ -113,13 +143,13 @@ proxy-groups:
 ##### Web dan Proxy Tertentu
   - name: Akrab
     type: select
-    proxies: [Semua,Indonesia,USA,DIRECT,REJECT]
+    proxies: [Semua,Singapura,Indonesia,USA,DIRECT,REJECT]
   - name: Vision
     type: select
-    proxies: [Semua,Indonesia,USA,DIRECT,REJECT]
+    proxies: [Semua,Singapura,Indonesia,USA,DIRECT,REJECT]
   - name: Youtube
     type: select
-    proxies: [Semua,Indonesia,USA,DIRECT,REJECT]
+    proxies: [Semua,Singapura,Indonesia,USA,DIRECT,REJECT]
 ## ================= Pengaturan DNS ==================
 dns:
   enable: true
@@ -158,7 +188,7 @@ dns:
   - 1.0.0.1
   - 112.215.248.124#REJECT
   fallback:
-  - https://cloudflare-dns.com/dns-query#Final
+  - https://cloudflare-dns.com/dns-query#DNS
   fallback-filter:
     geoip: true
     geoip-code: 'ID'
@@ -176,6 +206,7 @@ dns:
     - '+.visionplus.id'
     - '+.facebook.com'
     - '+.youtube.com'
+    - '+.noice.id'
 ## ================= Tempat Rules ==================
 rule-providers:
 ### classical / ipcidr / domain
@@ -255,6 +286,10 @@ rule-providers:
     type: file
     behavior: classical
     path: "./rule_provider/rule-USA.yaml"
+  RP_Pemerintah:
+    type: file
+    behavior: classical
+    path: "./rule_provider/rule-indo-pemerintah.yaml"  
 ## ================= Script (BETA) =================
 # script:
 #   code: |
@@ -263,6 +298,7 @@ rule-providers:
 ## ================= Atur Semua Rules ==================
 rules:
 ### Anti gagal Block Ads
+- DOMAIN,afs.googlesyndication.com,REJECT
 - DOMAIN-SUFFIX,googlesyndication.com,Semua
 - RULE-SET,RP_Reject,REJECT
 ### Paket untuk di direct
@@ -279,7 +315,7 @@ rules:
 - RULE-SET,RP_Lan_Domain,DIRECT
 - RULE-SET,RP_Lan_IP,DIRECT,no-resolve
 - GEOIP,private,DIRECT,no-resolve
-- RULE-SET,RP_DNS,DNS
+# - RULE-SET,RP_DNS,DNS
 - RULE-SET,RP_USA,USA
 ### Yang tidak di rule otomatis kesini
 - MATCH,GLOBAL

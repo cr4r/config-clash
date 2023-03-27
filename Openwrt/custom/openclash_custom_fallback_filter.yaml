@@ -1,17 +1,18 @@
 fallback-filter:
-  geoip: true
-  geoip-code: 'ID'
-  geosite:
-  - gfw
-  ipcidr: 
-  - 0.0.0.0/8
-  - 127.0.0.0/8
-  - 123.123.123.0/24
-  - 192.168.0.0/16
-  - 255.255.255.255/32
-  domain:
-  - '+.google.com'
-  - '+.zoom.us'
-  - '+.visionplus.id'
-  - '+.facebook.com'
-  - '+.youtube.com'
+    geoip: true
+    geoip-code: 'ID'
+    geosite:
+    - gfw
+    ipcidr: 
+    - 0.0.0.0/8
+    - 127.0.0.0/8
+    - 123.123.123.0/24
+    - 192.168.0.0/16
+    - 255.255.255.255/32
+    domain:
+    - '+.google.com'
+    - '+.zoom.us'
+    - '+.visionplus.id'
+    - '+.facebook.com'
+    - '+.youtube.com'
+    - '+.noice.id'

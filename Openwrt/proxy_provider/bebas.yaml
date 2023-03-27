@@ -1,9 +1,10 @@
 ### analytics-api.visionplus.id
+## Bug vixion 104.21.235.172
 proxies:
 ### https://howdy.id/create-cloud-obfs-hosting/vpn-server8/server-singapore3/
   - name: howdy-obfs
     uuid: 65ec25d0-bb60-11ed-b756-1239d0255272
-    server: 104.21.235.172
+    server: 104.22.5.240
     type: vmess
     port: 443
     alterId: 0
@@ -21,8 +22,8 @@ proxies:
 
 ### https://www.fastssh.com/page/create-v2ray-account/server/676730/vmess-singapore-ovh-3/
   - name: OVH-Fastssh-3
-    uuid: 8613c070-bfca-11ed-b630-205c6d5f5d78
-    server: 104.21.235.172
+    uuid: e93a53c0-c13d-11ed-b636-205c6d5f5d78
+    server: 104.22.5.240
     servername: sg-10.0rd.net
     type: vmess
     port: 443
@@ -39,10 +40,10 @@ proxies:
         Host: sg-10.0rd.net
         
 ### https://www.fastssh.com/page/create-v2ray-account/server/676722/vmess-singapore-ovh-2/
-  - name: OVH-Fastssh-2
-    uuid: c0505220-bfca-11ed-b933-205c6d5f5d78
-    server: 104.21.235.172
-    servername: sg-5.0rd.net
+  - name: sniff orang 1
+    uuid: ee8f86aa-1255-449b-be1a-b885739b1b10
+    server: 104.22.5.240
+    servername: alibaba.rizkihdytvpnstore.me
     type: vmess
     port: 443
     alterId: 0
@@ -53,15 +54,15 @@ proxies:
     udp-over-tcp: true
     network: ws
     ws-opts: 
-      path: /worryfree
+      path: /vmess
       headers: 
-        Host: sg-5.0rd.net
+        Host: alibaba.rizkihdytvpnstore.me
         
 ### https://www.fastssh.com/page/create-v2ray-account/server/676714/vmess-singapore-ovh-1/
-  - name: OVH-Fastssh-1
-    uuid: 1d24a040-bfcb-11ed-b839-205c6d5f5d78
-    server: 104.21.235.172
-    servername: sg-2.0rd.net
+  - name: sniff orang 2
+    uuid: cd8ef5b5-38c9-4a40-9efe-e19ab3b76f30
+    server: 104.22.5.240
+    servername: wunprem.hdyt.me
     type: vmess
     port: 443
     alterId: 0
@@ -72,15 +73,15 @@ proxies:
     udp-over-tcp: true
     network: ws
     ws-opts: 
-      path: /worryfree
+      path: /vmess
       headers: 
-        Host: sg-2.0rd.net
+        Host: wunprem.hdyt.me
 
 ### https://www.fastssh.com/page/dynamic-v2ray-creator/server/907/dynamic-sg-vultr/
   - name: Dynamic-Fastssh
-    server: 104.21.235.172
+    server: 104.22.5.240
     type: vmess
-    uuid: 06bdb184-e4ed-4ed0-a68c-c28cc81660e5
+    uuid: 8a1824b5-a2bd-4093-a0f6-47e916ba96c5
     port: 443
     alterId: 0
     cipher: auto
@@ -89,8 +90,41 @@ proxies:
     skip-cert-verify: true
     udp-over-tcp: true
     network: ws
-    servername: dynamic-sg1b.obfs.xyz
+    servername: dynamic-sg2b.obfs.xyz
     ws-opts: 
       path: /worryfree
       headers: 
-        Host: dynamic-sg1b.obfs.xyz
+        Host: dynamic-sg2b.obfs.xyz
+        
+        
+  - name: freevmess
+    server: 104.22.5.240
+    type: vmess
+    uuid: 8e241c52-2ca0-4211-8651-1063e809a86f
+    port: 443
+    alterId: 0
+    cipher: auto
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    udp-over-tcp: true
+    network: ws
+    servername: sg-freevmess.privateip.net
+    ws-opts: 
+      path: /freevmess
+      headers: 
+        Host: sg-freevmess.privateip.net
+        
+  - name: "freevmess-vless"
+    type: vless
+    server: 104.22.5.240
+    port: 443
+    uuid: 8e241c52-2ca0-4211-8651-1063e809a86f
+    udp: true
+    tls: true
+    network: ws
+    servername: sg-freevmess.privateip.net
+    ws-opts:
+      path: "/vless"
+      headers:
+        Host: sg-freevmess.privateip.net

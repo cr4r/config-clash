@@ -61,7 +61,7 @@ proxy-providers:
     health-check:
       enable: true
       url: http://cp.cloudflare.com/generate_204
-      interval: 100
+      interval: 200
 ## ================= Proxy digabungkan ==================
 proxy-groups:
   - name: DNS
@@ -73,17 +73,29 @@ proxy-groups:
     - Indonesia
     url: http://cp.cloudflare.com/generate_204
     interval: '50'
+  - name: Pilihan
+    type: select
+    disable-udp: false
+    use:
+    - PP-Final
+    - PP-Indonesia
+    - PP-USA
+    url: http://cp.cloudflare.com/generate_204
+    interval: '50'    
   - name: Final
     type: url-test
     disable-udp: false
     use:
     - PP-Final
+    url: http://cp.cloudflare.com/generate_204
+    interval: '100'    
   - name: Semua
     type: url-test
     disable-udp: false
     use:
     - PP-Final
     - PP-Indonesia
+    - PP-USA
     url: http://cp.cloudflare.com/generate_204
     interval: '100'
   - name: Indonesia
@@ -99,7 +111,7 @@ proxy-groups:
     use:
     - PP-USA
     url: http://cp.cloudflare.com/generate_204
-    interval: '50'
+    interval: '200'
 ##### Grub Proxy Indonesia
   - name: Mode Indonesia
     type: select
@@ -119,7 +131,7 @@ proxy-groups:
     proxies: [Semua,Indonesia,USA,DIRECT,REJECT]
   - name: Youtube
     type: select
-    proxies: [Semua,Indonesia,USA,DIRECT,REJECT]
+    proxies: [Semua,Final,Indonesia,USA,DIRECT,REJECT]
 ## ================= Pengaturan DNS ==================
 dns:
   enable: true
