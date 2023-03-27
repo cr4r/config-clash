@@ -1,0 +1,60 @@
+
+config interface 'loopback'
+	option device 'lo'
+	option proto 'static'
+	option ipaddr '127.0.0.1'
+	option netmask '255.0.0.0'
+
+config globals 'globals'
+	option ula_prefix 'fd00::/8'
+
+config device
+	option name 'br-lan'
+	option type 'bridge'
+	list ports 'eth0'
+	option mtu6 '1500'
+
+config interface 'lan'
+	option device 'br-lan'
+	option proto 'static'
+	option netmask '255.255.255.0'
+	option ipaddr '192.168.1.1'
+	option ip6assign '64'
+	option ip6hint 'cf'
+	option ip6ifaceid '::9'
+	list ip6class 'local'
+	list dns '1.1.1.1'
+	list dns '1.0.0.1'
+	list dns '2606:4700:4700::1111'
+	list dns '2606:4700:4700::1001'
+
+config interface 'wan1'
+	option device 'eth1'
+	option proto 'static'
+	option ipaddr '123.123.123.153'
+	option netmask '255.255.255.0'
+	option gateway '123.123.123.123'
+	option broadcast '123.123.123.255'
+
+config interface 'wan2'
+	option proto 'dhcp'
+	option device 'wwan0'
+	option metric '20'
+
+config interface 'tethering'
+	option proto 'dhcp'
+	option device 'usb0'
+
+config device
+	option name 'eth0'
+
+config interface 'libernet'
+	option proto 'none'
+	option device 'tun1'
+	option auto '0'
+
+config interface 'xderm'
+	option proto 'none'
+	option device 'tun0'
+	option auto '0'
+

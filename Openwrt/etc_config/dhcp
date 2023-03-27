@@ -1,0 +1,64 @@
+
+config dnsmasq
+	option domainneeded '1'
+	option localise_queries '1'
+	option rebind_protection '1'
+	option rebind_localhost '1'
+	option local '/lan/'
+	option domain 'lan'
+	option expandhosts '1'
+	option authoritative '1'
+	option readethers '1'
+	option leasefile '/tmp/dhcp.leases'
+	option localservice '1'
+	option ednspacket_max '1232'
+	option confdir '/tmp/dnsmasq.d'
+	option localuse '1'
+	option port '53'
+	list server '127.0.0.1#7874'
+	option noresolv '1'
+	option cachesize '0'
+	option filter_aaaa '0'
+
+config dhcp 'lan'
+	option interface 'lan'
+	option start '10'
+	option limit '240'
+	option leasetime '24h'
+	option force '1'
+	option netmask '255.255.255.0'
+	option ra 'relay'
+	option dhcpv6 'server'
+	list dns '2606:4700:4700::1111'
+	list dns '2606:4700:4700::1001'
+	option ndp 'relay'
+	list ra_flags 'none'
+
+config host
+	option mac '04:E5:98:04:C6:C0'
+	option name 'Ayah-HP'
+	option dns '1'
+	option ip '192.168.1.12'
+	option hostid '64'
+
+config host
+	option mac '00:0A:F5:28:BD:38'
+	option name 'Fatur-HP'
+	option dns '1'
+	option ip '192.168.1.11'
+	option hostid '64'
+
+config host
+	option mac '02:F4:D3:53:09:1D'
+	option name 'Fatur-Laptop'
+	option dns '1'
+	option ip '192.168.1.10'
+	option hostid '64'
+
+config host
+	option ip '192.168.1.47'
+	option mac '7C:C7:09:5A:46:1F'
+	option name 'Kakak-Laptop'
+	option dns '1'
+	option hostid '64'
+
