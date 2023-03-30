@@ -84,7 +84,6 @@ dns:
   prefer-h3: false
   default-nameserver:
     - 'https://1.1.1.1/dns-query'
-    - 'tcp://1.0.0.1'
     - '112.215.248.124#REJECT'     ## dns xl di reject
   listen: 0.0.0.0:1053
   use-hosts: true
