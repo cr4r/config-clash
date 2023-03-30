@@ -2,7 +2,7 @@
 proxies:
 ### https://www.fastssh.com/page/create-v2ray-account/server/676723/vmess-singapore-amp-1/
   - name: atha-fastssh-1
-    uuid: cbd03c50-cb66-11ed-b233-205c6d5f5d78
+    uuid: 916ccf70-cdef-11ed-b235-205c6d5f5d78
     server: 104.22.5.240
     type: vmess
     port: 443
@@ -21,7 +21,7 @@ proxies:
       
 ### https://www.fastssh.com/page/create-v2ray-account/server/676725/vmess-singapore-amp-2/
   - name: atha-fastssh-2
-    uuid: f1f6e9e0-cb66-11ed-b433-205c6d5f5d78
+    uuid: 7403dc20-cdf1-11ed-b139-205c6d5f5d78
     server: 104.22.5.240
     type: vmess
     port: 443

@@ -1,4 +1,4 @@
-### analytics-api.visionplus.id
+ ### analytics-api.visionplus.id
 ## Bug vixion 104.21.235.172
 proxies:
 ### https://howdy.id/create-cloud-obfs-hosting/vpn-server8/server-singapore3/
@@ -41,9 +41,9 @@ proxies:
         
 ### https://www.fastssh.com/page/create-v2ray-account/server/676722/vmess-singapore-ovh-2/
   - name: sniff orang 1
-    uuid: ee8f86aa-1255-449b-be1a-b885739b1b10
+    uuid: e939a4ec-52a7-45eb-a61f-108bc7632ceb
     server: 104.22.5.240
-    servername: alibaba.rizkihdytvpnstore.me
+    servername: orzy69.scvps.my.id
     type: vmess
     port: 443
     alterId: 0
@@ -54,9 +54,9 @@ proxies:
     udp-over-tcp: true
     network: ws
     ws-opts: 
-      path: /vmess
+      path: /vmessws
       headers: 
-        Host: alibaba.rizkihdytvpnstore.me
+        Host: orzy69.scvps.my.id
         
 ### https://www.fastssh.com/page/create-v2ray-account/server/676714/vmess-singapore-ovh-1/
   - name: sniff orang 2
@@ -81,7 +81,7 @@ proxies:
   - name: Dynamic-Fastssh
     server: 104.22.5.240
     type: vmess
-    uuid: 8a1824b5-a2bd-4093-a0f6-47e916ba96c5
+    uuid: eabdfa67-e77b-4e0b-a2d5-c4bcac3a7eec
     port: 443
     alterId: 0
     cipher: auto

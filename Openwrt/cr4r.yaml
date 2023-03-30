@@ -1,0 +1,420 @@
+---
+redir-port: 7892
+tproxy-port: 7895
+port: 7890
+socks-port: 7891
+mixed-port: 7893
+mode: rule
+log-level: error
+allow-lan: true
+external-controller: 0.0.0.0:9090
+secret: '123'
+bind-address: "*"
+external-ui: "/usr/share/openclash/ui"
+ipv6: true
+geodata-mode: true
+geodata-loader: memconservative
+tcp-concurrent: true
+sniffer:
+  enable: true
+  sniffing:
+  - tls
+  - http
+  ForceDnsMapping: false
+  ParsePureIp: true
+tun:
+  enable: true
+  stack: system
+  device: utun
+  mtu: 65535
+  auto-route: false
+  auto-detect-interface: false
+  dns-hijack:
+  - tcp://any:53
+profile:
+  store-selected: true
+  store-fake-ip: true
+experimental:
+  ignore-resolve-fail: true
+  sniff-tls-sni: true
+  udp-fallback-match: true
+base-bug:
+  bug:
+  - 104.21.235.171
+base-proxy:
+  vmess:
+  - type: vmess
+    port: 443
+    alterId: 0
+    cipher: auto
+    udp: true
+    udp-over-tcp: true
+    network: ws
+    tls: true
+    skip-cert-verify: true
+proxy-providers:
+  PP-Singapura:
+    type: file
+    path: "./proxy_provider/bebas.yaml"
+    health-check:
+      enable: true
+      url: http://cp.cloudflare.com/generate_204
+      interval: 50
+  PP-Indonesia:
+    type: file
+    path: "./proxy_provider/indonesia.yaml"
+    health-check:
+      enable: true
+      url: http://cp.cloudflare.com/generate_204
+      interval: 50
+  PP-USA:
+    type: file
+    path: "./proxy_provider/usa.yaml"
+    health-check:
+      enable: true
+      url: http://cp.cloudflare.com/generate_204
+      interval: 200
+proxy-groups:
+- name: Semua
+  type: url-test
+  disable-udp: false
+  use:
+  - PP-Singapura
+  - PP-Indonesia
+  - PP-USA
+  url: http://cp.cloudflare.com/generate_204
+  interval: '100'
+  tolerance: '100'
+- name: Pilihan
+  type: select
+  disable-udp: false
+  use:
+  - PP-Singapura
+  - PP-Indonesia
+  - PP-USA
+  url: http://cp.cloudflare.com/generate_204
+  interval: '50'
+- name: Singapura
+  type: url-test
+  disable-udp: false
+  use:
+  - PP-Singapura
+  url: http://cp.cloudflare.com/generate_204
+  interval: '100'
+  tolerance: '100'
+- name: Indonesia
+  type: url-test
+  disable-udp: false
+  use:
+  - PP-Indonesia
+  url: http://cp.cloudflare.com/generate_204
+  interval: '50'
+  tolerance: '100'
+- name: USA
+  type: url-test
+  disable-udp: false
+  use:
+  - PP-USA
+  url: http://cp.cloudflare.com/generate_204
+  interval: '200'
+  tolerance: '100'
+- name: DNS
+  type: select
+  disable-udp: false
+  proxies:
+  - Semua
+  - Singapura
+  - Indonesia
+  - DIRECT
+  url: http://cp.cloudflare.com/generate_204
+  interval: '50'
+- name: Mode Indonesia
+  type: select
+  disable-udp: false
+  proxies:
+  - Indonesia
+  - USA
+  - Semua
+  - DIRECT
+  - REJECT
+- name: Akrab
+  type: select
+  proxies:
+  - Semua
+  - Singapura
+  - Indonesia
+  - USA
+  - DIRECT
+  - REJECT
+- name: Vision
+  type: select
+  proxies:
+  - Semua
+  - Singapura
+  - Indonesia
+  - USA
+  - DIRECT
+  - REJECT
+- name: Youtube
+  type: select
+  proxies:
+  - Semua
+  - Singapura
+  - Indonesia
+  - USA
+  - DIRECT
+  - REJECT
+- name: Crypto
+  type: select
+  proxies:
+  - Semua
+  - Singapura
+  - Indonesia
+  - USA
+  - DIRECT
+  - REJECT
+dns:
+  enable: true
+  ipv6: true
+  auto-detect-interface: true
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  listen: 0.0.0.0:7874
+  fake-ip-filter:
+  - "+.lan"
+  - "+.stun.*.*"
+  - "+.stun.*.*.*"
+  - "+.stun.*.*.*.*"
+  - "+.stun.*.*.*.*.*"
+  - "*.home.arpa"
+  - "*.local"
+  - "*.test"
+  - "*.localhost"
+  - "*.invalid"
+  - "*.example"
+  - "*.localdomain"
+  - "*.lan"
+  - localhost
+  - 0.id.pool.ntp.org
+  - 1.id.pool.ntp.org
+  - 2.id.pool.ntp.org
+  - 3.id.pool.ntp.org
+  - time.*.com
+  - time.*.gov
+  - time.*.edu.cn
+  - time.*.apple.com
+  - time1.*.com
+  - time2.*.com
+  - time3.*.com
+  - time4.*.com
+  - time5.*.com
+  - time6.*.com
+  - time7.*.com
+  - ntp.*.com
+  - ntp1.*.com
+  - ntp2.*.com
+  - ntp3.*.com
+  - ntp4.*.com
+  - ntp5.*.com
+  - ntp6.*.com
+  - ntp7.*.com
+  - "*.time.edu.cn"
+  - "*.ntp.org.cn"
+  - "+.pool.ntp.org"
+  - time1.cloud.tencent.com
+  - music.163.com
+  - "*.music.163.com"
+  - "*.126.net"
+  - musicapi.taihe.com
+  - music.taihe.com
+  - songsearch.kugou.com
+  - trackercdn.kugou.com
+  - "*.kuwo.cn"
+  - api-jooxtt.sanook.com
+  - api.joox.com
+  - joox.com
+  - y.qq.com
+  - "*.y.qq.com"
+  - streamoc.music.tc.qq.com
+  - mobileoc.music.tc.qq.com
+  - isure.stream.qqmusic.qq.com
+  - dl.stream.qqmusic.qq.com
+  - aqqmusic.tc.qq.com
+  - amobile.music.tc.qq.com
+  - "*.xiami.com"
+  - "*.music.migu.cn"
+  - music.migu.cn
+  - "+.msftconnecttest.com"
+  - "+.msftncsi.com"
+  - msftconnecttest.com
+  - msftncsi.com
+  - localhost.ptlogin2.qq.com
+  - localhost.sec.qq.com
+  - "+.srv.nintendo.net"
+  - "*.n.n.srv.nintendo.net"
+  - "+.stun.playstation.net"
+  - xbox.*.*.microsoft.com
+  - "*.*.xboxlive.com"
+  - xbox.*.microsoft.com
+  - xnotify.xboxlive.com
+  - "+.battlenet.com.cn"
+  - "+.wotgame.cn"
+  - "+.wggames.cn"
+  - "+.wowsgame.cn"
+  - "+.wargaming.net"
+  - proxy.golang.org
+  - stun.*.*
+  - stun.*.*.*
+  - heartbeat.belkin.com
+  - "*.linksys.com"
+  - "*.linksyssmartwifi.com"
+  - "*.router.asus.com"
+  - mesu.apple.com
+  - swscan.apple.com
+  - swquery.apple.com
+  - swdownload.apple.com
+  - swcdn.apple.com
+  - swdist.apple.com
+  - lens.l.google.com
+  - stun.l.google.com
+  - "+.nflxvideo.net"
+  - "*.square-enix.com"
+  - "*.finalfantasyxiv.com"
+  - "*.ffxiv.com"
+  - "*.ff14.sdo.com"
+  - ff.dorado.sdo.com
+  - "*.mcdn.bilivideo.cn"
+  - "+.media.dssott.com"
+  proxy-server-nameserver:
+  - https://61op07dvr5.cloudflare-gateway.com/dns-query
+  nameserver:
+  - https://61op07dvr5.cloudflare-gateway.com/dns-query
+  default-nameserver:
+  - 172.64.36.1
+  - 172.64.36.2
+  - 112.215.248.124#REJECT
+  fallback:
+  - https://61op07dvr5.cloudflare-gateway.com/dns-query#DNS
+  fallback-filter:
+    geoip: true
+    geoip-code: ID
+    geosite:
+    - gfw
+    ipcidr:
+    - 0.0.0.0/8
+    - 127.0.0.0/8
+    - 123.123.123.0/24
+    - 192.168.0.0/16
+    - 255.255.255.255/32
+    domain:
+    - "+.google.com"
+    - "+.zoom.us"
+    - "+.visionplus.id"
+    - "+.facebook.com"
+    - "+.youtube.com"
+    - "+.noice.id"
+rule-providers:
+  RP_Direct:
+    type: file
+    behavior: classical
+    path: "./rule_provider/rule-direct.yaml"
+  RP_Reject:
+    type: file
+    behavior: classical
+    path: "./rule_provider/rule-reject.yaml"
+  RP_Indonesia:
+    type: file
+    behavior: classical
+    path: "./rule_provider/rule-indo-indonesia.yaml"
+  RP_WhatsApp:
+    type: file
+    behavior: classical
+    path: "./rule_provider/rule-whatsapp.yaml"
+  RP_Line:
+    type: file
+    behavior: domain
+    path: "./rule_provider/rule-line.yaml"
+  RP_Lan_Domain:
+    type: file
+    behavior: domain
+    path: "./rule_provider/rule-lan-domain.yaml"
+  RP_Lan_IP:
+    type: file
+    behavior: ipcidr
+    path: "./rule_provider/rule-lan-ip.yaml"
+  RP_DNS:
+    type: file
+    behavior: classical
+    path: "./rule_provider/rule-dns.yaml"
+  RP_Video:
+    type: file
+    behavior: classical
+    path: "./rule_provider/rule-indo-video.yaml"
+  RP_Musik:
+    type: file
+    behavior: classical
+    path: "./rule_provider/rule-indo-musik.yaml"
+  RP_Domain_Indo:
+    type: file
+    behavior: classical
+    path: "./rule_provider/rule-indo-domain-indo.yaml"
+  RP_Akaimahd:
+    type: file
+    behavior: classical
+    path: "./rule_provider/rule-indo-akaimahd.yaml"
+  RP_Disney_Joox:
+    type: file
+    behavior: classical
+    path: "./rule_provider/rule-indo-disney-joox.yaml"
+  RP_Market_Place:
+    type: file
+    behavior: classical
+    path: "./rule_provider/rule-indo-market-place.yaml"
+  RP_Ewallet:
+    type: file
+    behavior: classical
+    path: "./rule_provider/rule-indo-ewallet.yaml"
+  RP_Akrab:
+    type: file
+    behavior: classical
+    path: "./rule_provider/rule-paket-akrab.yaml"
+  RP_Vision:
+    type: file
+    behavior: classical
+    path: "./rule_provider/rule-paket-vision.yaml"
+  RP_Youtube:
+    type: file
+    behavior: classical
+    path: "./rule_provider/rule-youtube.yaml"
+  RP_USA:
+    type: file
+    behavior: classical
+    path: "./rule_provider/rule-USA.yaml"
+  RP_Pemerintah:
+    type: file
+    behavior: classical
+    path: "./rule_provider/rule-indo-pemerintah.yaml"
+  RP_Crypto:
+    type: file
+    behavior: classical
+    path: "./rule_provider/rule-crypto.yaml"
+rules:
+- DST-PORT,7895,REJECT
+- DST-PORT,7892,REJECT
+- IP-CIDR,198.18.0.1/16,REJECT,no-resolve
+- DOMAIN,afs.googlesyndication.com,REJECT
+- DOMAIN-SUFFIX,googlesyndication.com,Semua
+- RULE-SET,RP_Reject,REJECT
+- RULE-SET,RP_Akrab,Akrab
+- RULE-SET,RP_Vision,Vision
+- RULE-SET,RP_Youtube,Youtube
+- AND,((GEOSITE, YOUTUBE),(NETWORK, UDP)),REJECT
+- AND,((DST-PORT,5228-5230),(NETWORK,TCP),(DOMAIN,mtalk.google.com)),Mode Indonesia
+- RULE-SET,RP_Indonesia,Mode Indonesia
+- RULE-SET,RP_Direct,DIRECT
+- RULE-SET,RP_Lan_Domain,DIRECT
+- RULE-SET,RP_Lan_IP,DIRECT,no-resolve
+- GEOIP,private,DIRECT,no-resolve
+- RULE-SET,RP_USA,USA
+- MATCH,GLOBAL
+interface-name: eth1
