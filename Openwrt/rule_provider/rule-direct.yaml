@@ -1,3 +1,5 @@
 payload:
+  - RULE-SET,RP_Lan_Domain,DIRECT
+  - RULE-SET,RP_Lan_IP,DIRECT,no-resolve
   - DOMAIN,clash.razord.top
   - DOMAIN,yacd.haishan.me

@@ -10,5 +10,9 @@ payload:
   - DOMAIN-KEYWORD,medan
   - DOMAIN-KEYWORD,kalimantan
   - DOMAIN-KEYWORD,fhcibumn
-  - DOMAIN-SUFFIX,fhcibumn.com
+  - DOMAIN-KEYWORD,sscasn
+  - DOMAIN-KEYWORD,go.id
+
   - DOMAIN,fhcibumn.com
+  - DOMAIN-SUFFIX,fhcibumn.com
+  - DOMAIN-SUFFIX,bkn.go.id

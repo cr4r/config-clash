@@ -2,7 +2,7 @@
 proxies:
 ### https://www.fastssh.com/page/create-v2ray-account/server/676723/vmess-singapore-amp-1/
   - name: atha-fastssh-1
-    uuid: 916ccf70-cdef-11ed-b235-205c6d5f5d78
+    uuid: 88bd2650-d157-11ed-b536-205c6d5f5d78
     server: 104.22.5.240
     type: vmess
     port: 443
@@ -21,7 +21,7 @@ proxies:
       
 ### https://www.fastssh.com/page/create-v2ray-account/server/676725/vmess-singapore-amp-2/
   - name: atha-fastssh-2
-    uuid: 7403dc20-cdf1-11ed-b139-205c6d5f5d78
+    uuid: c2b3c2c0-d157-11ed-b934-205c6d5f5d78
     server: 104.22.5.240
     type: vmess
     port: 443
@@ -37,25 +37,6 @@ proxies:
       path: /od967rsh
       headers: 
         Host: sg-7.0rd.net
-
-### https://www.fastssh.com/page/create-v2ray-account/server/676721/vmess-indonesia-herza-limit/
-  - name: Herza-Limit-fastssh
-    uuid: 4c6f7c80-c602-11ed-b337-205c6d5f5d78
-    server: 104.22.5.240
-    type: vmess
-    port: 443
-    alterId: 0
-    cipher: auto
-    udp: true
-    udp-over-tcp: true
-    network: ws
-    tls: true
-    skip-cert-verify: true
-    servername: id-1.0rd.net
-    ws-opts: 
-      path: /einhcf3k
-      headers: 
-        Host: id-1.0rd.net
         
    
   - name: sniff orang-1

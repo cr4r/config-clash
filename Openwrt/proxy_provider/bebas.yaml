@@ -1,87 +1,11 @@
- ### analytics-api.visionplus.id
+### analytics-api.visionplus.id
 ## Bug vixion 104.21.235.172
 proxies:
-### https://howdy.id/create-cloud-obfs-hosting/vpn-server8/server-singapore3/
-  - name: howdy-obfs
-    uuid: 65ec25d0-bb60-11ed-b756-1239d0255272
-    server: 104.22.5.240
-    type: vmess
-    port: 443
-    alterId: 0
-    cipher: auto
-    udp: true
-    udp-over-tcp: true
-    tls: true
-    skip-cert-verify: true
-    network: ws
-    servername: sg3.socifiles.com
-    ws-opts: 
-      path: /vmws
-      headers: 
-        Host: sg3.socifiles.com
-
-### https://www.fastssh.com/page/create-v2ray-account/server/676730/vmess-singapore-ovh-3/
-  - name: OVH-Fastssh-3
-    uuid: e93a53c0-c13d-11ed-b636-205c6d5f5d78
-    server: 104.22.5.240
-    servername: sg-10.0rd.net
-    type: vmess
-    port: 443
-    alterId: 0
-    cipher: auto
-    udp: true
-    tls: true
-    skip-cert-verify: true
-    udp-over-tcp: true
-    network: ws
-    ws-opts: 
-      path: /worryfree
-      headers: 
-        Host: sg-10.0rd.net
-        
-### https://www.fastssh.com/page/create-v2ray-account/server/676722/vmess-singapore-ovh-2/
-  - name: sniff orang 1
-    uuid: e939a4ec-52a7-45eb-a61f-108bc7632ceb
-    server: 104.22.5.240
-    servername: orzy69.scvps.my.id
-    type: vmess
-    port: 443
-    alterId: 0
-    cipher: auto
-    udp: true
-    tls: true
-    skip-cert-verify: true
-    udp-over-tcp: true
-    network: ws
-    ws-opts: 
-      path: /vmessws
-      headers: 
-        Host: orzy69.scvps.my.id
-        
-### https://www.fastssh.com/page/create-v2ray-account/server/676714/vmess-singapore-ovh-1/
-  - name: sniff orang 2
-    uuid: cd8ef5b5-38c9-4a40-9efe-e19ab3b76f30
-    server: 104.22.5.240
-    servername: wunprem.hdyt.me
-    type: vmess
-    port: 443
-    alterId: 0
-    cipher: auto
-    udp: true
-    tls: true
-    skip-cert-verify: true
-    udp-over-tcp: true
-    network: ws
-    ws-opts: 
-      path: /vmess
-      headers: 
-        Host: wunprem.hdyt.me
-
 ### https://www.fastssh.com/page/dynamic-v2ray-creator/server/907/dynamic-sg-vultr/
-  - name: Dynamic-Fastssh
-    server: 104.22.5.240
+  - name: Dynamic-Fastsshh
+    server: quiz.vidio.com.cdn.cloudflare.net
     type: vmess
-    uuid: eabdfa67-e77b-4e0b-a2d5-c4bcac3a7eec
+    uuid: a8f0fa87-369d-48a6-9af3-5e1ee76ea28b
     port: 443
     alterId: 0
     cipher: auto
@@ -90,17 +14,17 @@ proxies:
     skip-cert-verify: true
     udp-over-tcp: true
     network: ws
-    servername: dynamic-sg2b.obfs.xyz
+    servername: dynamic-sg3b.obfs.xyz
     ws-opts: 
       path: /worryfree
       headers: 
-        Host: dynamic-sg2b.obfs.xyz
+        Host: dynamic-sg3b.obfs.xyz
         
         
   - name: freevmess
     server: 104.22.5.240
     type: vmess
-    uuid: 8e241c52-2ca0-4211-8651-1063e809a86f
+    uuid: a1e6568d-842a-476c-b9a2-87a229409d18
     port: 443
     alterId: 0
     cipher: auto
@@ -110,7 +34,7 @@ proxies:
     udp-over-tcp: true
     network: ws
     servername: sg-freevmess.privateip.net
-    ws-opts: 
+    ws-opts:
       path: /freevmess
       headers: 
         Host: sg-freevmess.privateip.net
@@ -119,7 +43,7 @@ proxies:
     type: vless
     server: 104.22.5.240
     port: 443
-    uuid: 8e241c52-2ca0-4211-8651-1063e809a86f
+    uuid: a1e6568d-842a-476c-b9a2-87a229409d18
     udp: true
     tls: true
     network: ws
@@ -127,4 +51,36 @@ proxies:
     ws-opts:
       path: "/vless"
       headers:
-        Host: sg-freevmess.privateip.net
+        Host: sg-freevmess.privateip.net   
+        
+  - name: coba
+    server: 104.22.5.240
+    type: vless
+    uuid: 86983226-29fd-4fd3-fda6-5acc79974e9f
+    port: 443
+    alterId: 0
+    cipher: auto
+    udp: true
+    tls: true
+    skip-cert-verify: true
+    udp-over-tcp: true
+    network: ws
+    servername: t5.iranregistry.xyz
+    ws-opts:
+      path: /serverssh.net
+      headers: 
+        Host: t5.iranregistry.xyz
+        
+  - name: "howdy-vless"
+    type: vless
+    server: 104.22.5.240
+    port: 443
+    uuid: b3dad1c0-d2d4-11ed-aa95-1239d0255272
+    udp: true
+    tls: true
+    network: ws
+    servername: sg3.socifiles.com
+    ws-opts:
+      path: "/vlws"
+      headers:
+        Host: sg3.socifiles.com

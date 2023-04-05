@@ -37,7 +37,10 @@ payload:
   - DOMAIN-SUFFIX,jago.com
   - DOMAIN-SUFFIX,api.jago.com
   - DOMAIN-SUFFIX,data.jago.com
-  
+#### Bank Aladin
+  - DOMAIN-SUFFIX,aladinbank.io
+  - DOMAIN-KEYWORD,aladin
+
 #
 # M-Banking
   - DOMAIN-SUFFIX,bri.co.id

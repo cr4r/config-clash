@@ -64,8 +64,6 @@ music.migu.cn
 #win10本地连接检测
 +.msftconnecttest.com
 +.msftncsi.com
-msftconnecttest.com
-msftncsi.com
 #QQ快捷登录
 localhost.ptlogin2.qq.com
 localhost.sec.qq.com

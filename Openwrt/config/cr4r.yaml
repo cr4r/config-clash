@@ -184,19 +184,16 @@ dns:
   - '3.id.pool.ntp.org'
   proxy-server-nameserver:
   - https://cloudflare-dns.com/dns-query
-  # - https://61op07dvr5.cloudflare-gateway.com/dns-query
   nameserver:
   - https://cloudflare-dns.com/dns-query
-  # - https://61op07dvr5.cloudflare-gateway.com/dns-query
   default-nameserver:
-  # - 172.64.36.1
-  # - 172.64.36.2
+  - 172.64.36.1
+  - 172.64.36.2
   - 1.1.1.1
   - 1.0.0.1
   - 112.215.248.124#REJECT
   fallback:
   - https://cloudflare-dns.com/dns-query#DNS
-  # - https://61op07dvr5.cloudflare-gateway.com/dns-query#DNS
   fallback-filter:
     geoip: true
     geoip-code: 'ID'
@@ -210,10 +207,10 @@ dns:
     - 255.255.255.255/32
     domain:
     - '+.google.com'
+    - '+.youtube.com'
     - '+.zoom.us'
     - '+.visionplus.id'
     - '+.facebook.com'
-    - '+.youtube.com'
     - '+.noice.id'
 ## ================= Tempat Rules ==================
 rule-providers:
@@ -324,9 +321,7 @@ rules:
 - RULE-SET,RP_Indonesia,Mode Indonesia
 ### Umum
 - RULE-SET,RP_Direct,DIRECT
-- RULE-SET,RP_Lan_Domain,DIRECT
-- RULE-SET,RP_Lan_IP,DIRECT,no-resolve
-- GEOIP,private,DIRECT,no-resolve
+# - GEOIP,private,DIRECT,no-resolve
 # - RULE-SET,RP_DNS,DNS
 - RULE-SET,RP_USA,USA
 ### Yang tidak di rule otomatis kesini

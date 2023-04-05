@@ -1,1 +1,0 @@
-wget https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt -O rule-reject.yaml
